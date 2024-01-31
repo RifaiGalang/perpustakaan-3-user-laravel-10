@@ -40,113 +40,143 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
             <!-- /.content-header -->
 
+
             <!-- Main content -->
             <div class="content">
-                <div class="container-fluid">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="d-flex align-items-center">
-                                    <h4 class="card-title"></h4>
-                                    <button class="btn btn-primary btn-round ml-auto" data-toggle="modal"
-                                        data-target="#modalCreate">
-                                        <i class="fa fa-plus"></i>
-                                        Tambah Data
-                                    </button>
-                                </div>
-                                <div class="modal fade" id="modalCreate" tabindex="-1" role="dialog"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog ">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Create Data Buku</h5>
-                                                <button type="button" class="close"
-                                                    data-dismiss="modal"><span>&times;</span></button>
-                                            </div>
-                                            <form method="POST" action="/data-buku/tambah" enctype="multipart/form-data">
-                                                @csrf
-                                                <div class="modal-body">
-                                                    <div class="form-group">
-                                                        <label>Judul Buku</label>
-                                                        <input type="text" class="form-control" name="judul"
-                                                            placeholder="Judul Buku ..." required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Penulis</label>
-                                                        <input type="text" class="form-control" name="penulis"
-                                                            placeholder="Penulis ..." required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Penerbit</label>
-                                                        <input type="text" class="form-control" name="penerbit"
-                                                            placeholder="Penerbit ..." required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Tahun Terbit</label>
-                                                        <input type="text" class="form-control" name="tahun_terbit"
-                                                            placeholder="Tahun Terbit ..." required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="gambar" class="form-label">Gambar</label>
-                                                        <input type="file" class="form-control" name="gambar">
-
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal"><i
-                                                                class="fa fa-undo"></i>Close</button>
-                                                        <button type="submit" class="btn btn-primary"><i
-                                                                class="fa fa-save"></i>Save changes</button>
-                                                    </div>
-                                                </div>
-                                            </form>
+                <section class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="d-flex align-items-center">
+                                            <h4 class="card-title"></h4>
+                                            <button class="btn btn-primary btn-round ml-auto" data-toggle="modal"
+                                                data-target="#modalCreate">
+                                                <i class="fa fa-plus"></i>
+                                                Tambah Data
+                                            </button>
                                         </div>
+                                        {{-- form modal create --}}
+                                        <div class="modal fade" id="modalCreate" tabindex="-1" role="dialog"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog ">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Create Data Buku</h5>
+                                                        <button type="button" class="close"
+                                                            data-dismiss="modal"><span>&times;</span></button>
+                                                    </div>
+                                                    <form method="POST" action="/data-buku/tambah" enctype="multipart/form-data">
+                                                        @csrf
+                                                        <div class="modal-body">
+                                                            <div class="form-group">
+                                                                <label>Judul Buku</label>
+                                                                <input type="text" class="form-control" name="judul"
+                                                                    placeholder="Judul Buku ..." required>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Penulis</label>
+                                                                <input type="text" class="form-control" name="penulis"
+                                                                    placeholder="Penulis ..." required>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Penerbit</label>
+                                                                <input type="text" class="form-control" name="penerbit"
+                                                                    placeholder="Penerbit ..." required>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Tahun Terbit</label>
+                                                                <input type="text" class="form-control" name="tahun_terbit"
+                                                                    placeholder="Tahun Terbit ..." required>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="gambar" class="form-label">Gambar</label>
+                                                                <input type="file" class="form-control" name="gambar">
+        
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal"><i
+                                                                        class="fa fa-undo"></i>Close</button>
+                                                                <button type="submit" class="btn btn-primary"><i
+                                                                        class="fa fa-save"></i>Save changes</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
+                                            <table id="example1" class="table table-bordered table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Judul</th>
+                                                        <th>Penulis</th>
+                                                        <th>Penerbit</th>
+                                                        <th>Tahun Terbit</th>
+                                                        <th>Gambar</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @php
+                                                        $no = 1;
+                                                    @endphp
+                                                    @foreach ($data_buku as $row)
+                                                        <tr>
+                                                            <td>{{ $no++ }}</td>
+                                                            <td>{{ $row->judul }}</td>
+                                                            <td>{{ $row->penulis }}</td>
+                                                            <td>{{ $row->penerbit }}</td>
+                                                            <td>{{ $row->tahun_terbit }}</td>
+                                                            <td><img src="gambar/{{ $row->gambar }} "alt=" "
+                                                                    width="60px" class=""></td>
+                                                            <td>
+                                                                <button data-toggle="modal"
+                                                                    class="btn btn-xs btn-primary"
+                                                                    data-target="#modalupdate{{ $row->id }}">
+                                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                                                    Edit</i></button>
+                                                                <button data-toggle="modal"
+                                                                    data-target="#modalHapus{{ $row->id }}"
+                                                                    class="btn btn-xs btn-danger"> <i
+                                                                        class="fa fa-trash"></i>Hapus</button>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Judul</th>
+                                                        <th>Penulis</th>
+                                                        <th>Penerbit</th>
+                                                        <th>Tahun Terbit</th>
+                                                        <th>Gambar</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                        <!-- /.card-body -->
                                     </div>
+                                    <!-- /.card -->
                                 </div>
+                                <!-- /.col -->
                             </div>
-                            <div class="card-body">
-                                <table class="table table-striped table-bordered zero-configuration">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Judul</th>
-                                            <th>Penulis</th>
-                                            <th>Penerbit</th>
-                                            <th>Tahun Terbit</th>
-                                            <th>Gambar</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @php
-                                            $no = 1;
-                                        @endphp
-                                        @foreach ($data_buku as $row)
-                                            <tr>
-                                                <td>{{ $no++ }}</td>
-                                                <td>{{ $row->judul }}</td>
-                                                <td>{{ $row->penulis }}</td>
-                                                <td>{{ $row->penerbit }}</td>
-                                                <td>{{ $row->tahun_terbit }}</td>
-                                                <td><img src="gambar/{{ $row->gambar }} "alt=" " width="60px"
-                                                        class=""></td>
-                                                <td>
-                                                    <button data-toggle="modal" class="btn btn-xs btn-primary"
-                                                        data-target="#modalupdate{{ $row->id }}">
-                                                        <i class="fa-solid fa-pen-to-square"></i> Edit</i></button>
-                                                    <button data-toggle="modal"
-                                                        data-target="#modalHapus{{ $row->id }}"
-                                                        class="btn btn-xs btn-danger"> <i
-                                                            class="fa fa-trash"></i>Hapus</button>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
+                            <!-- /.row -->
                         </div>
-                    </div>
-                </div>
+                        <!-- /.container-fluid -->
+                </section>
+
+
+
+
+
+                {{-- form modal update --}}
                 @foreach ($data_buku as $d)
                     <div class="modal fade" id="modalupdate{{ $d->id }}" tabindex="-1" role="dialog"
                         aria-hidden="true">
@@ -157,7 +187,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <button type="button" class="close"
                                         data-dismiss="modal"><span>&times;</span></button>
                                 </div>
-                                <form method="POST" action="/data-buku/update/{{ $d->id }}" enctype="multipart/form-data">
+                                <form method="POST" action="/data-buku/update/{{ $d->id }}"
+                                    enctype="multipart/form-data">
                                     @csrf
                                     <div class="modal-body">
                                         <div class="form-group">
@@ -190,7 +221,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <div class="form-group">
                                             <label for="gambar" class="form-label">Gambar</label>
                                             <input type="file" class="form-control" name="gambar">
-
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
@@ -204,6 +234,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div>
                     </div>
                 @endforeach
+                {{-- form modal hapus --}}
                 @foreach ($data_buku as $c)
                     <div class="modal fade" id="modalHapus{{ $c->id }}" tabindex="-1" role="dialog"
                         aria-hidden="true">
@@ -234,6 +265,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 @endforeach
             </div>
         </div>
+
+
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
             <!-- Control sidebar content goes here -->
@@ -255,4 +288,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- jQuery -->
     @include('template.script')
 
+    <script>
+        $(function() {
+            $("#example1").DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+    </script>
 </body>
