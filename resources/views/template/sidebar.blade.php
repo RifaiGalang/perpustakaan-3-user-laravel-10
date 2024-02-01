@@ -44,7 +44,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="home" class="nav-link">
+                <a href="home" class="nav-link ">
                   <i class="fa-solid fa-table-columns"></i>
                   <p>Dashboard</p>
                 </a>
@@ -61,6 +61,28 @@
                     <i class="fa-solid fa-book"></i>
                   <p>Data Buku</p>
                 </a>
+              </li>
+              <li class="nav-item ">
+                <a href="#" class="nav-link ">
+                    <i class="fa-solid fa-folder-tree"></i>
+                    <p>Data Kategori
+                      <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="nama-kategori" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Nama Kategori</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="nama-kategori" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Kategori Buku</p>
+                </a>
+              </li>
+                </ul>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">

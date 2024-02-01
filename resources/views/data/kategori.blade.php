@@ -63,41 +63,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <div class="modal-dialog ">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Create Data Buku</h5>
+                                                        <h5 class="modal-title">Create Kategori Buku</h5>
                                                         <button type="button" class="close"
                                                             data-dismiss="modal"><span>&times;</span></button>
                                                     </div>
-                                                    <form method="POST" action="/data-buku/tambah"
+                                                    <form method="POST" action="/nama-kategori/tambah"
                                                         enctype="multipart/form-data">
                                                         @csrf
                                                         <div class="modal-body">
                                                             <div class="form-group">
-                                                                <label>Judul Buku</label>
+                                                                <label>Nama Kategori</label>
                                                                 <input type="text" class="form-control"
-                                                                    name="judul" placeholder="Judul Buku ..."
+                                                                    name="nama_kategori" placeholder="Nama Kategori ..."
                                                                     required>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Penulis</label>
-                                                                <input type="text" class="form-control"
-                                                                    name="penulis" placeholder="Penulis ..." required>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Penerbit</label>
-                                                                <input type="text" class="form-control"
-                                                                    name="penerbit" placeholder="Penerbit ..." required>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Tahun Terbit</label>
-                                                                <input type="text" class="form-control"
-                                                                    name="tahun_terbit" placeholder="Tahun Terbit ..."
-                                                                    required>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="gambar" class="form-label">Gambar</label>
-                                                                <input type="file" class="form-control"
-                                                                    name="gambar">
-
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
@@ -117,11 +95,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
-                                                        <th>Judul</th>
-                                                        <th>Penulis</th>
-                                                        <th>Penerbit</th>
-                                                        <th>Tahun Terbit</th>
-                                                        <th>Gambar</th>
+                                                        <th>Nama Kategori</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -129,15 +103,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     @php
                                                         $no = 1;
                                                     @endphp
-                                                    @foreach ($data_buku as $row)
+                                                    @foreach ($data_namakategori as $row)
                                                         <tr>
                                                             <td>{{ $no++ }}</td>
-                                                            <td>{{ $row->judul }}</td>
-                                                            <td>{{ $row->penulis }}</td>
-                                                            <td>{{ $row->penerbit }}</td>
-                                                            <td>{{ $row->tahun_terbit }}</td>
-                                                            <td><img src="gambar/{{ $row->gambar }} "alt=" "
-                                                                    width="60px" class=""></td>
+                                                            <td>{{ $row->nama_kategori }}</td>
                                                             <td>
                                                                 <button data-toggle="modal"
                                                                     class="btn btn-xs btn-primary"
@@ -152,17 +121,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th>No</th>
-                                                        <th>Judul</th>
-                                                        <th>Penulis</th>
-                                                        <th>Penerbit</th>
-                                                        <th>Tahun Terbit</th>
-                                                        <th>Gambar</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </tfoot>
                                             </table>
                                         </div>
                                         <!-- /.card-body -->
@@ -178,51 +136,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </section>
 
 
+
+
+
                 {{-- form modal update --}}
-                @foreach ($data_buku as $d)
+                @foreach ($data_namakategori as $d)
                     <div class="modal fade" id="modalupdate{{ $d->id }}" tabindex="-1" role="dialog"
                         aria-hidden="true">
                         <div class="modal-dialog ">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Edit Data User</h5>
+                                    <h5 class="modal-title">Edit Nama Kategori</h5>
                                     <button type="button" class="close"
                                         data-dismiss="modal"><span>&times;</span></button>
                                 </div>
-                                <form method="POST" action="/data-buku/update/{{ $d->id }}"
+                                <form method="POST" action="/nama-kategori/update/{{ $d->id }}"
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="modal-body">
                                         <div class="form-group">
-                                            <label>Judul Buku</label>
-                                            <input type="text" value="{{ $d->judul }}" class="form-control"
-                                                name="judul" placeholder="Judul Buku ..." required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Penulis</label>
-                                            <input type="text" value="{{ $d->penulis }}" class="form-control"
-                                                name="penulis" placeholder="Penulis ..." required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Penerbit</label>
-                                            <input type="text" value="{{ $d->penerbit }}" class="form-control"
-                                                name="penerbit" placeholder="Penerbit ..." required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Tahun Terbit</label>
-                                            <input type="text" value="{{ $d->tahun_terbit }}"
-                                                class="form-control" name="tahun_terbit"
-                                                placeholder="Tahun Terbit ..." required>
-                                        </div>
-                                        @if ($d->gambar)
-                                            <div class="mb-2">
-                                                <img src="{{ url('gambar') . '/' . $d->gambar }}" alt=""
-                                                    width="60px">
-                                            </div>
-                                        @endif
-                                        <div class="form-group">
-                                            <label for="gambar" class="form-label">Gambar</label>
-                                            <input type="file" class="form-control" name="gambar">
+                                            <label>Nama Kategori</label>
+                                            <input type="text" value="{{ $d->nama_kategori }}" class="form-control"
+                                                name="nama_kategori" placeholder="Nama Kategori ..." required>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
@@ -237,7 +172,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </div>
                 @endforeach
                 {{-- form modal hapus --}}
-                @foreach ($data_buku as $c)
+                @foreach ($data_namakategori as $c)
                     <div class="modal fade" id="modalHapus{{ $c->id }}" tabindex="-1" role="dialog"
                         aria-hidden="true">
                         <div class="modal-dialog ">
