@@ -11,9 +11,15 @@ class Kategori extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
     protected $table = 'kategoribuku';
+    protected $primaryKey = 'id';
     protected $fillable = [
+        'id',
         'nama_kategori',
     ];
+    // public function relasikategori(){
+    //     return $this->hasMany(Relasikategori::class);
+    // }
+    
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 }

@@ -9,7 +9,9 @@ class Buku extends Model
 {
     use HasFactory;
     protected $table = 'buku';
+    protected $primaryKey ='id';
     protected $fillable = [
+        'id',
         'judul',
         'penulis',
         'penerbit',

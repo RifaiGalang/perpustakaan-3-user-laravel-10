@@ -77,7 +77,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="nama-kategori" class="nav-link">
+                <a href="kategori" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Kategori Buku</p>
                 </a>

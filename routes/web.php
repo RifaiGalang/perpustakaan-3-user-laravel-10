@@ -4,6 +4,7 @@ use App\Http\Controllers\BukuController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RelasikategoriController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -48,3 +49,7 @@ Route::middleware(['auth', 'checkrole:admin'])->group(function () {
     route::post('/nama-kategori/update/{id}', [KategoriController::class, 'update']);
     route::post('/nama-kategori/destory/{id}', [KategoriController::class, 'destroy']);
 });
+route::get('/kategori', [RelasikategoriController::class, 'index'])->name('kategori');
+route::post('/kategori/tambah', [RelasikategoriController::class, 'tambahkategori']);
+    route::post('/kategori/update/{id}', [RelasikategoriController::class, 'update']);
+    route::get('/kategori/destory/{id}', [RelasikategoriController::class, 'destroy']);
