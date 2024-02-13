@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Buku;
+use App\Models\Kategori;
+use App\Models\Relasikategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
@@ -11,18 +13,27 @@ class BukuController extends Controller
 {
     public function index()
     {
-        $data = array(
-            'title' => 'Data User',
-            'data_buku' => Buku::all(),
-        );
+        $data=Buku::all();
+        // $data = array(
+        //     'title' => 'Data User',
+        //     'data_buku1' => Buku::join('kategoribuku','kategoribuku.id','=','buku.id_kategori')->get(),
+        //     'data_kategori' => Kategori::all(),
+        //     'data_buku' => Buku::all(),
+           
+        // );
 
-        return view('data.buku', $data);
+        return view('data.buku', [
+            'kategori' => Kategori::all(),
+            'buku' => Buku::all(),
+            'data'=>$data,
+        ]);
     }
     public function tambahbuku(Request $request)
     {
         $request->validate(
             [
                 'judul' => 'required',
+                'id_kategori' => 'required',
                 'penulis' => 'required',
                 'penerbit' => 'required',
                 'tahun_terbit' => 'required',
@@ -31,6 +42,7 @@ class BukuController extends Controller
             ],
             [
                 'judul.required' => 'wajib diisi',
+                'id_kategori.required' => 'wajib diisi',
                 'penulis.required' => 'wajib diisi',
                 'penerbit.required' => 'wajib diisi',
                 'tahun_terbit.required' => 'wajib diisi',
@@ -40,6 +52,7 @@ class BukuController extends Controller
 
         $data_buku = ([
             'judul' => $request->judul,
+            'id_kategori' => $request->id_kategori,
             'penulis' => $request->penulis,
             'penerbit' => $request->penerbit,
             'tahun_terbit' => $request->tahun_terbit,
@@ -58,26 +71,29 @@ class BukuController extends Controller
     }
     public function update(Request $request, $id)
     {
-        $request->validate(
-            [
-                'judul' => 'required',
-                'penulis' => 'required',
-                'penerbit' => 'required',
-                'tahun_terbit' => 'required',
-                'gambar' => 'required|image|mimes:png,jpg,jpeg,svg|max:2048',
+        // $request->validate(
+        //     [
+        //         'judul' => 'required',
+        //         'id_kategori' => 'required',
+        //         'penulis' => 'required',
+        //         'penerbit' => 'required',
+        //         'tahun_terbit' => 'required',
+        //         'gambar' => 'required|image|mimes:png,jpg,jpeg,svg|max:2048',
 
-            ],
-            [
-                'judul.required' => 'wajib diisi',
-                'penulis.required' => 'wajib diisi',
-                'penerbit.required' => 'wajib diisi',
-                'tahun_terbit.required' => 'wajib diisi',
+        //     ],
+        //     [
+        //         'judul.required' => 'wajib diisi',
+        //         'id_kategori.required' => 'wajib diisi',
+        //         'penulis.required' => 'wajib diisi',
+        //         'penerbit.required' => 'wajib diisi',
+        //         'tahun_terbit.required' => 'wajib diisi',
 
-            ]
-        );
+        //     ]
+        // );
 
         $data_edit = ([
             'judul' => $request->judul,
+            'id_kategori' => $request->id_kategori,
             'penulis' => $request->penulis,
             'penerbit' => $request->penerbit,
             'tahun_terbit' => $request->tahun_terbit,

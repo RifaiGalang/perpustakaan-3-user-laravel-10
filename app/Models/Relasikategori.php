@@ -23,10 +23,13 @@ class Relasikategori extends Model
         'id_buku',
         'id_kategori',
     ];
-    
-// public function relasikategori(){
-// return $this->belongsToMany(Relasikategori::class,'relasikategori','id_buku','id_kategori');
-// }
+
+// public function relasitobuku(){
+//     return $this->hasOne(Buku::class);
+//     }
+//     public function relasitokategori(){
+//     return $this->hasOne(Kategori::class);
+//     }
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 }

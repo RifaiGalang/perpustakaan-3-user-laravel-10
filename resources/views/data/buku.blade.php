@@ -6,7 +6,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <html lang="en">
 
 <head>
-    <title>AdminLTE 3 | Starter</title>
+    <title>Perpustakaan | Buku</title>
     @include('template.head')
 </head>
 
@@ -78,6 +78,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                     required>
                                                             </div>
                                                             <div class="form-group">
+                                                                <label>Kategori</label>
+                                                                <select class="form-control" name="id_kategori"
+                                                                    required>
+                                                                    <option value="" hidden>--PILIH KATEGORI--
+                                                                    </option>
+                                                                    @foreach ($kategori as $b)
+                                                                        <option value="{{ $b->id }}">
+                                                                            {{ $b->nama_kategori }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group">
                                                                 <label>Penulis</label>
                                                                 <input type="text" class="form-control"
                                                                     name="penulis" placeholder="Penulis ..." required>
@@ -118,6 +130,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     <tr>
                                                         <th>No</th>
                                                         <th>Judul</th>
+                                                        <th>Kategori</th>
                                                         <th>Penulis</th>
                                                         <th>Penerbit</th>
                                                         <th>Tahun Terbit</th>
@@ -129,33 +142,37 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     @php
                                                         $no = 1;
                                                     @endphp
-                                                    @foreach ($data_buku as $row)
-                                                        <tr>
-                                                            <td>{{ $no++ }}</td>
-                                                            <td>{{ $row->judul }}</td>
-                                                            <td>{{ $row->penulis }}</td>
-                                                            <td>{{ $row->penerbit }}</td>
-                                                            <td>{{ $row->tahun_terbit }}</td>
-                                                            <td><img src="gambar/{{ $row->gambar }} "alt=" "
-                                                                    width="60px" class=""></td>
-                                                            <td>
-                                                                <button data-toggle="modal"
-                                                                    class="btn btn-xs btn-primary"
-                                                                    data-target="#modalupdate{{ $row->id }}">
-                                                                    <i class="fa-solid fa-pen-to-square"></i>
-                                                                    Edit</i></button>
-                                                                <button data-toggle="modal"
-                                                                    data-target="#modalHapus{{ $row->id }}"
-                                                                    class="btn btn-xs btn-danger"> <i
-                                                                        class="fa fa-trash"></i>Hapus</button>
-                                                            </td>
-                                                        </tr>
+                                                    @foreach ($data as $row)
+                                                      
+                                                            <tr>
+                                                                <td>{{ $no++ }}</td>
+                                                                <td>{{ $row->judul }}</td>
+                                                                <td>{{ $row->kategori->nama_kategori}}</td>
+                                                                <td>{{ $row->penulis }}</td>
+                                                                <td>{{ $row->penerbit }}</td>
+                                                                <td>{{ $row->tahun_terbit }}</td>
+                                                                <td><img src="gambar/{{ $row->gambar }} "alt=" "
+                                                                        width="60px" class=""></td>
+                                                                <td>
+                                                                    <button data-toggle="modal"
+                                                                        class="btn btn-xs btn-primary"
+                                                                        data-target="#modalupdate{{ $row->id }}">
+                                                                        <i class="fa-solid fa-pen-to-square"></i>
+                                                                        Edit</i></button>
+                                                                    <button data-toggle="modal"
+                                                                        data-target="#modalHapus{{ $row->id }}"
+                                                                        class="btn btn-xs btn-danger"> <i
+                                                                            class="fa fa-trash"></i>Hapus</button>
+                                                                </td>
+                                                            </tr>
+                                                       
                                                     @endforeach
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
                                                         <th>No</th>
                                                         <th>Judul</th>
+                                                        <th>Kategori</th>
                                                         <th>Penulis</th>
                                                         <th>Penerbit</th>
                                                         <th>Tahun Terbit</th>
@@ -179,13 +196,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
                 {{-- form modal update --}}
-                @foreach ($data_buku as $d)
+                @foreach ($buku as $d)
                     <div class="modal fade" id="modalupdate{{ $d->id }}" tabindex="-1" role="dialog"
                         aria-hidden="true">
                         <div class="modal-dialog ">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Edit Data User</h5>
+                                    <h5 class="modal-title">Edit Data Buku</h5>
                                     <button type="button" class="close"
                                         data-dismiss="modal"><span>&times;</span></button>
                                 </div>
@@ -197,6 +214,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <label>Judul Buku</label>
                                             <input type="text" value="{{ $d->judul }}" class="form-control"
                                                 name="judul" placeholder="Judul Buku ..." required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Kategori</label>
+                                            <select class="form-control" name="id_kategori"
+                                                required>
+                                                <option selected value="{{$d->id}}" >{{$d->kategori->nama_kategori}}
+                                                </option>
+                                                @foreach ($kategori as $b)
+                                                    <option  value="{{ $b->id }}">
+                                                        {{ $b->nama_kategori }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label>Penulis</label>
@@ -237,7 +266,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </div>
                 @endforeach
                 {{-- form modal hapus --}}
-                @foreach ($data_buku as $c)
+                @foreach ($buku as $c)
                     <div class="modal fade" id="modalHapus{{ $c->id }}" tabindex="-1" role="dialog"
                         aria-hidden="true">
                         <div class="modal-dialog ">

@@ -13,11 +13,15 @@ class Buku extends Model
     protected $fillable = [
         'id',
         'judul',
+        'id_kategori',
         'penulis',
         'penerbit',
         'tahun_terbit',
         'gambar'
     ];
+    public function kategori(){
+        return $this->belongsTo(Kategori::class,'id_kategori','id');
+        }
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 }

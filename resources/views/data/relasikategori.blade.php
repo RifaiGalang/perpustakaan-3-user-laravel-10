@@ -59,7 +59,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         </div>
                                         {{-- form modal create --}}
 
-                                        <div class="modal fade" id="modalCreate" tabindex="-1" role="dialog"
+                                        {{-- <div class="modal fade" id="modalCreate" tabindex="-1" role="dialog"
                                             aria-hidden="true">
                                             <div class="modal-dialog ">
                                                 <div class="modal-content">
@@ -74,7 +74,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         <div class="modal-body">
                                                             <div class="form-group">
                                                                 <label>Buku</label>
-                                                                <select class="form-control" name="role" required>
+                                                                <select class="form-control" name="id_buku" required>
                                                                     <option value="" hidden>--PILIH BUKU--
                                                                     </option>
                                                                     @foreach ($data_namabuku as $a)
@@ -85,7 +85,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Kategori</label>
-                                                                <select class="form-control" name="role" required>
+                                                                <select class="form-control" name="id_kategori" required>
                                                                     <option value="" hidden>--PILIH
                                                                         KATEGORI-- </option>
                                                                     @foreach ($data_namakategori as $b)
@@ -106,7 +106,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         </div>
                                                 </form>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
 
                                     <!-- /.card-header -->
@@ -124,12 +124,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 @php
                                                     $no = 1;
                                                 @endphp
-                                                @foreach ($data_kategori as $row)
-                                                @foreach ($data_buku as $rw)
+                                                {{-- @foreach ($datarelasi as $row) --}}
+                                                @foreach ($databuku as $row)
                                                     <tr>
                                                         <td>{{ $no++ }}</td>
-                                                        <td>{{ $rw->judul }}</td>
-                                                        <td>{{ $row->nama_kategori }}</td>
+                                                        <td>{{ $row->judul}}</td>
+                                                       
+                                                        <td>{{ $row->nama_kategori}}</td>
+                                                     
                                                         <td>
                                                             <button data-toggle="modal" class="btn btn-xs btn-primary"
                                                                 data-target="#modalupdate{{ $row->id }}">
@@ -141,7 +143,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                     class="fa fa-trash"></i>Hapus</button>
                                                         </td>
                                                     </tr>
-                                                    @endforeach
+                                                    {{-- @endforeach --}}
                                                 @endforeach
                                             </tbody>
                                         </table>
@@ -162,7 +164,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 
-            {{-- form modal update --}}
+            {{-- form modal update
             @foreach ($data_kategori as $d)
                 <div class="modal fade" id="modalupdate{{ $d->id }}" tabindex="-1" role="dialog"
                     aria-hidden="true">
@@ -199,7 +201,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
             @endforeach
             {{-- form modal hapus --}}
-            @foreach ($data_kategori as $c)
+            {{-- @foreach ($data_kategori as $c)
                 <div class="modal fade" id="modalHapus{{ $c->id }}" tabindex="-1" role="dialog"
                     aria-hidden="true">
                     <div class="modal-dialog ">
@@ -226,7 +228,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div>
                     </div>
                 </div>
-            @endforeach
+            @endforeach --}} 
         </div>
     </div>
 
