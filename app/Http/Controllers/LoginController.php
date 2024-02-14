@@ -39,26 +39,28 @@ class LoginController extends Controller
             'password.required' => 'password wajib di isi'
         ]);
 
-        if(Auth::attempt($request->only('email','password')));{
+        // if(Auth::attempt($request->only('email','password')));{
 
-            return redirect('/home');
-        }
-        return redirect('/');
-        // $infologin = [
-        //     'email' => $request->email,
-        //     'password' => $request->password,
-        // ];
-        // if (Auth::attempt($infologin)) {
-        //     if (Auth::user()->role == 'admin') {
-        //         return redirect('/home');
-        //     } elseif (Auth::user()->role == 'petugas') {
-        //         return redirect('/home');
-        //     } elseif (Auth::user()->role == 'petminjam') {
-        //         return redirect('/home');
-        //     } else {
-        //         return redirect('')->withErrors('username atau password salah')->withInput();
-        //     }
+        //     return redirect('/home');
         // }
+      
+        $infologin = [
+            'email' => $request->email,
+            'password' => $request->password,
+        ];
+        if (Auth::attempt($infologin)) {
+            return redirect('/home');
+            // if (Auth::user()->role == 'admin') {
+            //     return redirect('/home');
+            // } elseif (Auth::user()->role == 'petugas') {
+            //     return redirect('/home');
+            // } elseif (Auth::user()->role == 'peminjam') {
+            //     return redirect('/home');
+            } else {
+                return redirect('')->withErrors('username atau password salah')->withInput();
+            }
+        // }
+        return redirect('/');
     }
     function logout()
     {

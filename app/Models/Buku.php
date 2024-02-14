@@ -22,6 +22,11 @@ class Buku extends Model
     public function kategori(){
         return $this->belongsTo(Kategori::class,'id_kategori','id');
         }
+    public function peminjaman(){
+        return $this->belongsTo(Peminjaman::class,'id_buku','id');
+        }
+    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 }

@@ -29,7 +29,7 @@ class UserController extends Controller
             'alamat' => $request->alamat,
             'remember_token' => Str::random(60),
         ]);
-        return redirect('data-user')->with('succes','Data Berhasil Disimpan');
+        return redirect('data-user')->with('success','Data Berhasil Disimpan');
     }
     public function update(Request $request, $id)
     {
@@ -44,11 +44,11 @@ class UserController extends Controller
                 'alamat' => $request->alamat,
                 'remember_token' => Str::random(60),
             ]);
-        return redirect('data-user')->with('succes','Data Berhasil Diubah');
+        return redirect('data-user')->with('success','Data Berhasil Diubah');
     }
     public function destroy($id)
     {
          User::where('id', $id)->delete();
-        return redirect('data-user')->with('succes','Data Berhasil Dihapus');
+        return redirect('data-user')->with('success','Data Berhasil Dihapus');
     }
 }

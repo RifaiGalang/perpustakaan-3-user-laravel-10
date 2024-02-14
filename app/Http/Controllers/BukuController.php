@@ -14,13 +14,6 @@ class BukuController extends Controller
     public function index()
     {
         $data=Buku::all();
-        // $data = array(
-        //     'title' => 'Data User',
-        //     'data_buku1' => Buku::join('kategoribuku','kategoribuku.id','=','buku.id_kategori')->get(),
-        //     'data_kategori' => Kategori::all(),
-        //     'data_buku' => Buku::all(),
-           
-        // );
 
         return view('data.buku', [
             'kategori' => Kategori::all(),
@@ -67,7 +60,7 @@ class BukuController extends Controller
             $data_buku['gambar'] = $gambar_nama;
         }
         Buku::create($data_buku);
-        return redirect('data-buku');
+        return redirect('data-buku')->with('success','Data Berhasil Ditambah');
     }
     public function update(Request $request, $id)
     {

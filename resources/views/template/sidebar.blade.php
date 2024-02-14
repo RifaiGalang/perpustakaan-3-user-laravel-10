@@ -42,7 +42,7 @@
                                 <p>Dashboard</p>
                             </a>
                         </li>
-                        @if (Auth::user()->role == 'admin')
+                        @if (Auth::user()->role == 'admin'||Auth::user()->role == 'petugas' )
                             <li class="nav-item">
                                 <a href="data-user" class="nav-link">
                                     <i class="fa-solid fa-users"></i>
@@ -61,15 +61,59 @@
                                 </a>
                             </li>
                         @endif
-                        @if (Auth::user()->role == 'peminjam')
+                        @if (Auth::user()->role == 'peminjam'||Auth::user()->role == 'petugas')
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="pinjam" class="nav-link">
                                     <i class="fa-solid fa-memory"></i>
                                     <p>Peminjaman</p>
+                                    <i class="right fas fa-angle-left"></i>
+                                </a>
+                           
+                            <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="pinjam" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Daftar buku</p>
+                                    
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="pinjam" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Daftar Pinjaman</p>
+                                  
+                                </a>
+                            </li>
+                            </ul>
+                        </li>
                         @endif
-
+                        {{-- @if (Auth::user()->role == 'petugas')
+                            <li class="nav-item">
+                                <a href="data-user" class="nav-link">
+                                    <i class="fa-solid fa-users"></i>
+                                    <p>Data Pengguna</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="data-buku" class="nav-link">
+                                    <i class="fa-solid fa-book"></i>
+                                    <p>Data Buku</p>
+                                </a>
+                            <li class="nav-item">
+                                <a href="nama-kategori" class="nav-link">
+                                    <i class="fa-solid fa-bars"></i>
+                                    <p>Nama Kategori</p>
+                                </a>
+                            </li>
+                        @endif --}}
+                        {{-- @if (Auth::user()->role == 'petugas')
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fa-solid fa-memory"></i>
+                                <p>Peminjaman</p>
+                            </a>
+                        </li>
+                    @endif --}}
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="fa-solid fa-print"></i>

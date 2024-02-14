@@ -25,6 +25,9 @@ class User extends Authenticatable
         'nama_lengkap',
         'alamat'
     ];
+    public function peminjaman(){
+        return $this->belongsTo(Peminjaman::class,'id_user','id');
+        }
 
     /**
      * The attributes that should be hidden for serialization.
