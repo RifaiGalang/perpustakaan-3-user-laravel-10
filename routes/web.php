@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BukuController;
+use App\Http\Controllers\DetailpinjamController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LoginController;
@@ -57,4 +58,6 @@ Route::middleware(['auth', 'checkrole:admin,petugas'])->group(function () {
 
 Route::middleware(['auth', 'checkrole:peminjam,petugas'])->group(function () {
     route::get('/pinjam', [PeminjamanController::class, 'index'])->name('pinjam');
+    route::post('/pinjam/tambah', [PeminjamanController::class, 'pinjamtambah'])->name('pinjamtambah');
+    route::get('/detailpinjam', [PeminjamanController::class, 'detail'])->name('detailpinjam');
 });

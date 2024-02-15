@@ -78,7 +78,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="pinjam" class="nav-link">
+                                <a href="detailpinjam" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Daftar Pinjaman</p>
                                   

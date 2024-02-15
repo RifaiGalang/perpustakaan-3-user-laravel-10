@@ -25,8 +25,8 @@ class User extends Authenticatable
         'nama_lengkap',
         'alamat'
     ];
-    public function peminjaman(){
-        return $this->belongsTo(Peminjaman::class,'id_user','id');
+    public function user(){
+        return $this->hasMany(Peminjaman::class);
         }
 
     /**
