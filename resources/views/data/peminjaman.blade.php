@@ -125,7 +125,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="modal-body">
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label>Nama</label>
                                             <select class="form-control" name="id_user"
                                             required>
@@ -136,7 +136,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     {{ $b->nama_lengkap}}</option>
                                             @endforeach
                                         </select>
-                                        </div>
+                                        </div> --}}
                                         <div class="form-group">
                                             <label>Judul</label>
                                             <select class="form-control" name="id_buku"

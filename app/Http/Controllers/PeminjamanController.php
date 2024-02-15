@@ -58,7 +58,7 @@ class PeminjamanController extends Controller
         //   }
         
         $data_pinjam = ([
-            'id_user' => $request->id_user,
+            'id_user' =>auth()->user()->id,
             'id_buku' => $request->id_buku,
             'tgl_pinjam' => date('Y-m-d'),
             'statuspeminjaman' => 'Belum di Kembalikan',
@@ -90,5 +90,8 @@ class PeminjamanController extends Controller
     //     ]);
     //    }
     //    return redirect('absensi-masuk');
+    }
+    public function kembalitambah(){
+        
     }
 }

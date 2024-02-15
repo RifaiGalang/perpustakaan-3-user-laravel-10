@@ -27,7 +27,7 @@ class LoginController extends Controller
             'alamat'=> $request->alamat,
             'remember_token'=> Str::random(60),
         ]);
-        return view('login');
+        return view('login.login');
     }
     public function postlogin(Request $request)
     {
