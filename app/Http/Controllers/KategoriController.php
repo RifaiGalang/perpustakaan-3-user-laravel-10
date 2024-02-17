@@ -15,7 +15,7 @@ class KategoriController extends Controller
             'data_namakategori' => Kategori::all(),
         );
 
-        return view('data.kategori', $data);
+        return view('datamaster.kategori', $data);
     }
     public function tambahnamakategori(Request $request){
         

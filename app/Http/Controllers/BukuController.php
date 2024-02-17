@@ -15,7 +15,8 @@ class BukuController extends Controller
     {
         $data=Buku::all();
 
-        return view('data.buku', [
+        return view('datamaster.buku', [
+            'title'=>'Data Buku',
             'kategori' => Kategori::all(),
             'buku' => Buku::all(),
             'data'=>$data,

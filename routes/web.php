@@ -58,6 +58,10 @@ Route::middleware(['auth', 'checkrole:admin,petugas'])->group(function () {
 
 Route::middleware(['auth', 'checkrole:peminjam,petugas'])->group(function () {
     route::get('/pinjam', [PeminjamanController::class, 'index'])->name('pinjam');
-    route::post('/pinjam/tambah', [PeminjamanController::class, 'pinjamtambah'])->name('pinjamtambah');
+    route::get('/pinjam/tambah/{id}', [PeminjamanController::class, 'pinjamtambah'])->name('pinjamtambah');
+    route::get('/ubahStatus1/{id}', [PeminjamanController::class, 'kembaliupdate'])->name('kembalitambah');
     route::get('/detailpinjam', [PeminjamanController::class, 'detail'])->name('detailpinjam');
+});
+Route::middleware(['auth', 'checkrole:admin'])->group(function () {
+route::get('/alldatapinjam', [PeminjamanController::class, 'alldatapinjam'])->name('alldatapinjam');
 });

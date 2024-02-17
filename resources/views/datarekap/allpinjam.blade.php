@@ -27,12 +27,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="card-title">Data Buku</h1>
+                            <h1 class="card-title">{{$title}}</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Data Buku</li>
+                                <li class="breadcrumb-item active">{{$title}}</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -51,47 +51,36 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <div class="card-header">
                                         <!-- /.card-header -->
                                         <div class="card-body">
+                                            @if ($message = Session::get('success'))
+                                            <div class="alert alert-success">
+                                              <button type="button" class="close" data-dismiss="alert">×</button>	
+                                                <strong>{{ $message }}</strong>
+                                            </div>
+                                            @endif
                                             <table id="example1" class="table table-bordered table-striped">
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
+                                                        <th>Nama Lengkap</th>
                                                         <th>Judul</th>
-                                                        <th>Kategori</th>
-                                                        <th>Gambar</th>
-                                                        <th>Action</th>
+                                                        <th>Tanggal Pinjam</th>
+                                                        <th>Tanggal Kembali</th>
+                                                        <th>Status Peminjaman</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @php
                                                         $no = 1;
                                                     @endphp
-                                                    @foreach ($buku as $row)
+                                                    @foreach ($data as $row)
                                                         <tr>
                                                             <td>{{ $no++ }}</td>
-                                                            <td>{{ $row->judul }}</td>
-                                                            <td>{{ $row->kategori->nama_kategori }}</td>
-                                                            <td><img src="gambar/{{ $row->gambar }} "alt=" "
-                                                                    width="60px" class=""></td>
-
-                                                            <td>
-                                                                <button data-toggle="modal"
-                                                                    href="#modalShow{{ $row->id }}"
-                                                                    class="btn btn-link btn-success">
-                                                                    <i class="fas fa-eye text-white"></i>
-                                                                </button>
-                                                                <button data-toggle="modal"
-                                                                    href="#modalPinjam{{ $row->id }}"
-                                                                    class="btn btn-primary">
-                                                                    <i class="fa fa-layer-group"></i>Pinjam
-                                                                </button>
-
-                                                                {{-- <input type="hidden" name="id_buku" required
-                                                                        {{ $row->id }}>
-                                                                    <button class="btn btn-primary">
-                                                                        <i class="fa fa-layer-group"></i>Pinjam
-                                                                    </button> --}}
-
-                                                            </td>
+                                                            <td>{{ $row->user->nama_lengkap}}</td>
+                                                            <td>{{ $row->buku->judul }}</td>
+                                                            <td>{{ $row->tgl_pinjam }}</td>
+                                                            <td>{{ $row->tgl_kembali }}</td>
+                                                            <td>{{ $row->statuspeminjaman }}</td>
+                                                            
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
@@ -111,13 +100,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                 {{-- form modal create --}}
                 
-                @foreach ($buku as $c)
+                @foreach ($data as $c)
                     <div class="modal fade" id="modalPinjam{{ $c->id }}" tabindex="-1" role="dialog"
                         aria-hidden="true">
                         <div class="modal-dialog ">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Detail</h5>
+                                    <h5 class="modal-title">Input Data</h5>
                                     <button type="button" class="close"
                                         data-dismiss="modal"><span>&times;</span></button>
                                 </div>
@@ -139,7 +128,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         </div> --}}
                                         <div class="form-group">
                                             <label>Judul</label>
-                                            <select class="form-control" name="id_buku"
+                                            <select class="form-control" name="id_buku" 
                                             required>
                                             <option selected value="{{$c->id}}" >{{$c->judul}}
                                             </option>

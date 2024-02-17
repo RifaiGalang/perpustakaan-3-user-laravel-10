@@ -27,22 +27,22 @@
                 data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+               
+               <li class="nav-item">
+                   <a href="home" class="nav-link">
+                       <i class="fa-solid fa-home"></i>
+                       <p>Home</p>
+                   </a>
+               </li>
+               @if (Auth::user()->role == 'admin' || Auth::user()->role == 'petugas')
                 <li class="nav-item menu-open">
-                    <a href="#" class="nav-link active">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <a class="nav-link ">
                         <p>
-                            Starter Pages
+                            Master Data
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="home" class="nav-link ">
-                                <i class="fa-solid fa-table-columns"></i>
-                                <p>Dashboard</p>
-                            </a>
-                        </li>
-                        @if (Auth::user()->role == 'admin'||Auth::user()->role == 'petugas' )
                             <li class="nav-item">
                                 <a href="data-user" class="nav-link">
                                     <i class="fa-solid fa-users"></i>
@@ -60,75 +60,45 @@
                                     <p>Nama Kategori</p>
                                 </a>
                             </li>
-                        @endif
-                        @if (Auth::user()->role == 'peminjam'||Auth::user()->role == 'petugas')
-                            <li class="nav-item">
-                                <a href="pinjam" class="nav-link">
-                                    <i class="fa-solid fa-memory"></i>
-                                    <p>Peminjaman</p>
-                                    <i class="right fas fa-angle-left"></i>
-                                </a>
-                           
-                            <ul class="nav nav-treeview">
+                        </ul>
+                    </li>
+                    @endif
+                <li class="nav-item menu-open">
+                    <a class="nav-link">
+                        <p>Peminjaman
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @if (Auth::user()->role == 'peminjam' || Auth::user()->role == 'petugas')
                             <li class="nav-item">
                                 <a href="pinjam" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Daftar buku</p>
-                                    
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="detailpinjam" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Daftar Pinjaman</p>
-                                  
                                 </a>
                             </li>
-                            </ul>
+                        @endif
+                        @if (Auth::user()->role == 'admin')
+                        <li class="nav-item">
+                            <a href="alldatapinjam" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Daftar Pinjaman</p>
+                            </a>
                         </li>
                         @endif
-                        {{-- @if (Auth::user()->role == 'petugas')
-                            <li class="nav-item">
-                                <a href="data-user" class="nav-link">
-                                    <i class="fa-solid fa-users"></i>
-                                    <p>Data Pengguna</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="data-buku" class="nav-link">
-                                    <i class="fa-solid fa-book"></i>
-                                    <p>Data Buku</p>
-                                </a>
-                            <li class="nav-item">
-                                <a href="nama-kategori" class="nav-link">
-                                    <i class="fa-solid fa-bars"></i>
-                                    <p>Nama Kategori</p>
-                                </a>
-                            </li>
-                        @endif --}}
-                        {{-- @if (Auth::user()->role == 'petugas')
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="fa-solid fa-memory"></i>
-                                <p>Peminjaman</p>
-                            </a>
-                        </li>
-                    @endif --}}
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="fa-solid fa-print"></i>
-                                <p>Cetak Laporan</p>
-                            </a>
-                        </li>
                     </ul>
                 </li>
+
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Simple Link
-                            <span class="right badge badge-danger">New</span>
-                        </p>
+                        <i class="fa-solid fa-print"></i>
+                        <p>Cetak Laporan</p>
                     </a>
                 </li>
                 <li class="nav-item">

@@ -15,7 +15,7 @@ class UserController extends Controller
             'data_user' => User::all(),
         );
 
-        return view('data.user', $data);
+        return view('datamaster.user', $data);
     }
     public function tambahuser(Request $request)
     {
