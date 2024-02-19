@@ -61,29 +61,10 @@ class BukuController extends Controller
             $data_buku['gambar'] = $gambar_nama;
         }
         Buku::create($data_buku);
-        return redirect('data-buku')->with('success','Data Berhasil Ditambah');
+        return redirect('data-buku')->with('success','Buku Berhasil Ditambah');
     }
     public function update(Request $request, $id)
     {
-        // $request->validate(
-        //     [
-        //         'judul' => 'required',
-        //         'id_kategori' => 'required',
-        //         'penulis' => 'required',
-        //         'penerbit' => 'required',
-        //         'tahun_terbit' => 'required',
-        //         'gambar' => 'required|image|mimes:png,jpg,jpeg,svg|max:2048',
-
-        //     ],
-        //     [
-        //         'judul.required' => 'wajib diisi',
-        //         'id_kategori.required' => 'wajib diisi',
-        //         'penulis.required' => 'wajib diisi',
-        //         'penerbit.required' => 'wajib diisi',
-        //         'tahun_terbit.required' => 'wajib diisi',
-
-        //     ]
-        // );
 
         $data_edit = ([
             'judul' => $request->judul,
@@ -104,13 +85,13 @@ class BukuController extends Controller
             $data_edit['gambar'] = $gambar_nama;
         }
         Buku:: where('id',$id)->update($data_edit);
-        return redirect('data-buku');
+        return redirect('data-buku')->with('success','Buku Berhasil Diubah');
     }
     public function destroy($id){
         $data_delete = Buku:: where('id',$id)->first();
         File:: delete(public_path('gambar').'/'. $data_delete->gambar);
         Buku:: where('id',$id)->delete();
 
-        return redirect('data-buku');
+        return redirect('data-buku')->with('success','Buku Berhasil Dihapus');
     }
 }

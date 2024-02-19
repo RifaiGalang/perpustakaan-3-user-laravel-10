@@ -28,6 +28,9 @@ class User extends Authenticatable
     public function user(){
         return $this->hasMany(Peminjaman::class);
         }
+    public function koleksibuku(){
+        return $this->hasMany(Koleksi::class);
+        }
 
     /**
      * The attributes that should be hidden for serialization.

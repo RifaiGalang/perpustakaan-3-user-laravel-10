@@ -60,7 +60,7 @@ class LoginController extends Controller
                 return redirect('')->withErrors('username atau password salah')->withInput();
             }
         // }
-        return redirect('/');
+        return view('/home');
     }
     function logout()
     {

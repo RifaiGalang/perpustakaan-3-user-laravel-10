@@ -22,7 +22,7 @@ class KategoriController extends Controller
         Kategori::create([
             'nama_kategori'=>$request->nama_kategori,
         ]);
-        return redirect('nama-kategori')->with('success','Data Berhasil Ditambah');
+        return redirect('nama-kategori')->with('success','Nama Kategori Berhasil Ditambah');
     }
     public function update(Request $request, $id)
     {
@@ -31,11 +31,11 @@ class KategoriController extends Controller
             ->update([
                 'nama_kategori' => $request->nama_kategori,
             ]);
-        return redirect('nama-kategori')->with('success','Data Berhasil Diubah');
+        return redirect('nama-kategori')->with('success','Nama Kategori Berhasil Diubah');
     }
     public function destroy($id)
     {
          Kategori::where('id', $id)->delete();
-        return redirect('nama-kategori')->with('success','Data Berhasil Dihapus');
+        return redirect('nama-kategori')->with('success','Nama Kategori Berhasil Dihapus');
     }
 }

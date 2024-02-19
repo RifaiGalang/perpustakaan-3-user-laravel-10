@@ -14,15 +14,11 @@ class PeminjamanController extends Controller
 {
     public function detail()
     {
-        // $data = array(
-
-        //     'detailpinjam' => Peminjaman::all(),
-        // );
-        // return view('data.detailpinjam', $data);
         $user = auth()->id();
         $data = Peminjaman::where('id_user', $user)->get();
 
         return view('datacustom.detailpinjam', [
+            'title'=>'Detail peminjaman',
             'peminjaman' => Peminjaman::all(),
             'buku' => Buku::all(),
             'kategori' => Kategori::all(),
@@ -36,6 +32,7 @@ class PeminjamanController extends Controller
         $data = Buku::all();
 
         return view('datacustom.peminjaman', [
+            'title'=>'Peminjaman Buku',
             'peminjaman' => Peminjaman::all(),
             'buku' => Buku::all(),
             'kategori' => Kategori::all(),
@@ -43,7 +40,6 @@ class PeminjamanController extends Controller
             'detailpinjam' => Peminjaman::all(),
             'data' => $data,
         ]);
-        // return view('data.peminjaman');
     }
     public function alldatapinjam()
     {
@@ -63,15 +59,6 @@ class PeminjamanController extends Controller
 
     public function pinjamtambah(Request $request, $id)
     {
-
-        // Peminjaman::create([
-        //     'id_user'              => $_SESSION['id_user'],
-        //     'id_buku'              => $_POST['id_buku'],
-        //     'tgl_pinjam'   => date('Y-m-d'),
-        //     'statuspeminjaman'    => 'Belum di Kembalikan',
-        // ]);
-        //     return redirect('pinjam')->with('success', 'Selamat, Buku berhasil di pinjam');
-        //   }
 
         $data_pinjam = ([
             'id_user' => auth()->user()->id,

@@ -31,7 +31,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="home">Home</a></li>
                                 <li class="breadcrumb-item active">{{$title}}</li>
                             </ol>
                         </div><!-- /.col -->
@@ -79,8 +79,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                             <td>{{ $row->buku->judul }}</td>
                                                             <td>{{ $row->tgl_pinjam }}</td>
                                                             <td>{{ $row->tgl_kembali }}</td>
-                                                            <td>{{ $row->statuspeminjaman }}</td>
-                                                            
+                                                            <td>
+                                                                @if ($row->statuspeminjaman == 'Belum di Kembalikan')
+                                                                <span class="badge bg-warning text-white">Belum di Kembalikan</span>
+                                                            @elseif ($row->statuspeminjaman == 'Sudah di Kembalikan')
+                                                                <span
+                                                                    class="badge bg-success">Sudah di Kembalikan</span>
+                                                            </td>
+                                                            @endif
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
@@ -96,6 +102,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div>
                         <!-- /.container-fluid -->
                     </div>
+                    
                 </section>
 
                 {{-- form modal create --}}
@@ -220,7 +227,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </div>
                 @endforeach
             </div>
-        </div>
     </div>
 
     <!-- Control Sidebar -->

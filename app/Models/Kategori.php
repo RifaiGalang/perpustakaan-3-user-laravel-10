@@ -19,6 +19,9 @@ class Kategori extends Model
     public function buku(){
         return $this->hasMany(Buku::class);
         }
+    public function koleksi(){
+        return $this->hasMany(Koleksi::class);
+        }
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';

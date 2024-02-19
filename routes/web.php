@@ -4,6 +4,7 @@ use App\Http\Controllers\BukuController;
 use App\Http\Controllers\DetailpinjamController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\KoleksipribadiController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\UserController;
@@ -35,6 +36,7 @@ route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 //HOME BERDASARKAN SETELAH LOGIN 
 Route::middleware(['auth'])->group(function () {
     route::get('/home', [HomeController::class, 'index'])->name('home');
+    // route::get('/viewdata', [HomeController::class, 'viewdata'])->name('viewdata');
 });
 
 //CRUD USER
@@ -55,13 +57,22 @@ Route::middleware(['auth', 'checkrole:admin,petugas'])->group(function () {
     route::get('/nama-kategori/destroy/{id}', [KategoriController::class, 'destroy']);
 });
 
-
+//CRUD PEMINJAMAN OLEH USER
 Route::middleware(['auth', 'checkrole:peminjam,petugas'])->group(function () {
     route::get('/pinjam', [PeminjamanController::class, 'index'])->name('pinjam');
     route::get('/pinjam/tambah/{id}', [PeminjamanController::class, 'pinjamtambah'])->name('pinjamtambah');
-    route::get('/ubahStatus1/{id}', [PeminjamanController::class, 'kembaliupdate'])->name('kembalitambah');
+    route::get('/kembalikan/{id}', [PeminjamanController::class, 'kembaliupdate'])->name('kembalitambah');
     route::get('/detailpinjam', [PeminjamanController::class, 'detail'])->name('detailpinjam');
 });
+
+//CEK ALL DATA OLEH ADMIN
 Route::middleware(['auth', 'checkrole:admin'])->group(function () {
-route::get('/alldatapinjam', [PeminjamanController::class, 'alldatapinjam'])->name('alldatapinjam');
+    route::get('/alldatapinjam', [PeminjamanController::class, 'alldatapinjam'])->name('alldatapinjam');
+});
+
+//CRUD KOLEKSI OLEH PEMINJAM
+Route::middleware(['auth', 'checkrole:peminjam'])->group(function () {
+    route::get('/koleksi-pribadi',[KoleksipribadiController::class, 'index'])->name('koleksi');
+    route::get('/koleksi/tambah/{id}',[KoleksipribadiController::class, 'koleksitambah'])->name('koleksitambah');
+    route::get('/koleksi-pribadi/destroy/{id}', [KoleksipribadiController::class, 'destroy']);
 });

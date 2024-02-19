@@ -27,12 +27,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="card-title">Data Buku</h1>
+                            <h1 class="card-title">{{ $title }}</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Data Buku</li>
+                                <li class="breadcrumb-item"><a href="home">Home</a></li>
+                                <li class="breadcrumb-item active">{{ $title }}</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -52,10 +52,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <!-- /.card-header -->
                                         <div class="card-body">
                                             @if ($message = Session::get('success'))
-                                            <div class="alert alert-success">
-                                              <button type="button" class="close" data-dismiss="alert">×</button>	
-                                                <strong>{{ $message }}</strong>
-                                            </div>
+                                                <div class="alert alert-success">
+                                                    <button type="button" class="close"
+                                                        data-dismiss="alert">×</button>
+                                                    <strong>{{ $message }}</strong>
+                                                </div>
                                             @endif
                                             <table id="example1" class="table table-bordered table-striped">
                                                 <thead>
@@ -86,11 +87,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                     <i class="fas fa-eye text-white"></i>
                                                                 </button>
                                                                 <a type="button"
-                                                                            href="/pinjam/tambah/{{ $row->id }}"
-                                                                            class="btn btn-primary" >
-                                                                            <i></i> Pinjam
-                                                                        </a>
-                                                            
+                                                                    href="/pinjam/tambah/{{ $row->id }}"
+                                                                    class="btn btn-primary">
+                                                                    <i></i> Pinjam
+                                                                </a>
+
                                                             </td>
                                                         </tr>
                                                     @endforeach
@@ -108,72 +109,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <!-- /.container-fluid -->
                     </div>
                 </section>
-
-                {{-- form modal create --}}
-                
-                @foreach ($data as $c)
-                    <div class="modal fade" id="modalPinjam{{ $c->id }}" tabindex="-1" role="dialog"
-                        aria-hidden="true">
-                        <div class="modal-dialog ">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Input Data</h5>
-                                    <button type="button" class="close"
-                                        data-dismiss="modal"><span>&times;</span></button>
-                                </div>
-                                <form method="POST" action="/pinjam/tambah"
-                                    enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="modal-body">
-                                        {{-- <div class="form-group">
-                                            <label>Nama</label>
-                                            <select class="form-control" name="id_user"
-                                            required>
-                                            <option value="" hidden>--PILIH NAMA PEMINJAM--
-                                            </option>
-                                            @foreach ($user as $b)
-                                                <option value="{{ $b->id  }}">
-                                                    {{ $b->nama_lengkap}}</option>
-                                            @endforeach
-                                        </select>
-                                        </div> --}}
-                                        <div class="form-group">
-                                            <label>Judul</label>
-                                            <select class="form-control" name="id_buku" 
-                                            required>
-                                            <option selected value="{{$c->id}}" >{{$c->judul}}
-                                            </option>
-                                            
-                                        </select>
-                                        </div>
-                                       
-                                        <div class="form-group">
-                                            <label>Tanggal Pinjam</label>
-                                            <input type="date" value="{{ $c->tgl_pinjam }}" class="form-control"
-                                                name="tgl_pinjam" required>
-                                        </div>
-                                        @if ($c->gambar)
-                                            <div class="mb-2">
-                                                <img src="{{ url('gambar') . '/' . $c->gambar }}" alt=""
-                                                    width="60px">
-                                            </div>
-                                        @endif
-                                       
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
-                                                    class="fa fa-undo"></i>Close</button>
-                                            <button type="submit" class="btn btn-primary"><i
-                                                    class="fa fa-save"></i>Save changes</button>
-                                        </div>
-                                    </div>
-                                </form>
-                                
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
                 {{-- form modal show detail --}}
-                @foreach ($buku as $d)
+                @foreach ($data as $d)
                     <div class="modal fade" id="modalShow{{ $d->id }}" tabindex="-1" role="dialog"
                         aria-hidden="true">
                         <div class="modal-dialog ">
@@ -185,45 +122,55 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </div>
                                 @csrf
                                 <div class="modal-body">
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <div class="row justify-content-center">
-                                                @if ($d->gambar)
-                                                    <div class="mb-5">
-                                                        <img src="{{ url('gambar') . '/' . $d->gambar }}"
-                                                            alt="" width="170px">
-                                                    </div>
-                                                @endif
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="row justify-content-center">
+                                                    @if ($d->gambar)
+                                                        <div class="mb-5">
+                                                            <img src="{{ url('gambar') . '/' . $d->gambar }}"
+                                                                alt="" width="170px">
+                                                        </div>
+                                                    @endif
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <ul class="list-group list-group-unbordered mb-3">
-                                            <li class="list-group-item">
-                                                <b>Judul</b>
-                                                <label
-                                                    class="badge badge-info float-right">{{ $d->judul }}</label>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <b>Kategori</b>
-                                                <label
-                                                    class="badge badge-info float-right">{{ $d->kategori->nama_kategori }}</label>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <b>Penulis</b>
-                                                <label
-                                                    class="badge badge-info float-right">{{ $d->penulis }}</label>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <b>Penerbit</b>
-                                                <label
-                                                    class="badge badge-info float-right">{{ $d->penerbit }}</label>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <b>Tahun Terbit</b>
-                                                <label
-                                                    class="badge badge-info float-right">{{ $d->tahun_terbit }}</label>
-                                            </li>
-                                        </ul>
+
+                                            <ul class="list-group list-group-unbordered ml-5">
+                                                <li class="list-group-item">
+                                                    <b>Judul</b>
+                                                    <label
+                                                        class="badge badge-info float-right">{{ $d->judul }}</label>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <b>Kategori</b>
+                                                    <label
+                                                        class="badge badge-info float-right">{{ $d->kategori->nama_kategori }}</label>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <b>Penulis</b>
+                                                    <label
+                                                        class="badge badge-info float-right">{{ $d->penulis }}</label>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <b>Penerbit</b>
+                                                    <label
+                                                        class="badge badge-info float-right">{{ $d->penerbit }}</label>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <b>Tahun Terbit</b>
+                                                    <label
+                                                        class="badge badge-info float-right">{{ $d->tahun_terbit }}</label>
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                        <div class="text-center">
+                                            <a type="button" href="/koleksi/tambah/{{ $d->id }}"
+                                                class="btn btn-primary">
+                                                <i class="fa fa-plus"></i> Koleksi
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -232,20 +179,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 @endforeach
             </div>
         </div>
-    </div>
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-        <div class="p-3">
-            <h5>Title</h5>
-            <p>Sidebar content</p>
-        </div>
-    </aside>
-    <!-- /.control-sidebar -->
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+            <div class="p-3">
+                <h5>Title</h5>
+                <p>Sidebar content</p>
+            </div>
+        </aside>
+        <!-- /.control-sidebar -->
 
-    <!-- Main Footer -->
-    @include('template.footer')
+        <!-- Main Footer -->
+        @include('template.footer')
     </div>
 
     <!-- ./wrapper -->

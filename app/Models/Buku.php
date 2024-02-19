@@ -25,6 +25,9 @@ class Buku extends Model
     public function buku(){
         return $this->hasMany(Peminjaman::class);
         }
+    public function koleksi(){
+        return $this->hasMany(Koleksi::class);
+        }
     
 
     const CREATED_AT = 'created_at';

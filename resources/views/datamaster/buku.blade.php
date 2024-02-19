@@ -31,7 +31,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="home">Home</a></li>
                                 <li class="breadcrumb-item active">{{$title}}</li>
                             </ol>
                         </div><!-- /.col -->
@@ -125,6 +125,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         </div>
                                         <!-- /.card-header -->
                                         <div class="card-body">
+                                            @if ($message = Session::get('success'))
+                                            <div class="alert alert-success">
+                                              <button type="button" class="close" data-dismiss="alert">×</button>	
+                                                <strong>{{ $message }}</strong>
+                                            </div>
+                                            @endif
                                             <table id="example1" class="table table-bordered table-striped">
                                                 <thead>
                                                     <tr>

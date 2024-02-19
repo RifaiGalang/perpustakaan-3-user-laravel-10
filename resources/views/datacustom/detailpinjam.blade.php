@@ -27,12 +27,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="card-title">Data Buku</h1>
+                            <h1 class="card-title">{{$title}}</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Data Buku</li>
+                                <li class="breadcrumb-item"><a href="home">Home</a></li>
+                                <li class="breadcrumb-item active">{{$title}}</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -78,11 +78,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                 <td>{{ $no++ }}</td>
                                                                 <td>{{ $row->buku->judul }}</td>
                                                                 <td>{{ $row->tgl_pinjam }}</td>
-                                                                <td>{{ $row->statuspeminjaman }}</td>
+                                                                <td>
+                                                                @if ($row->statuspeminjaman=='Belum di Kembalikan' )
+                                                                <span
+                                                                class="badge bg-warning text-white">Belum di Kembalikan</span>
+
+                                                                @endif
+                                                               </td>
                                                                 <td>
 
                                                                     <a type="button"
-                                                                        href="/ubahStatus1/{{ $row->id }}"
+                                                                        href="/kembalikan/{{ $row->id }}"
                                                                         class="btn btn-xs btn-info">
                                                                         <i>
                                                                         </i> Kembali
@@ -107,7 +113,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </section>
             </div>
         </div>
-    </div>
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
