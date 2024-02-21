@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 
 class KategoriController extends Controller
 {
+    // DATA KATEGORI ALL
     public function index()
     {
         $data = array(
@@ -17,6 +18,8 @@ class KategoriController extends Controller
 
         return view('datamaster.kategori', $data);
     }
+
+    // CREATE KATEGORI
     public function tambahnamakategori(Request $request){
         
         Kategori::create([
@@ -24,6 +27,8 @@ class KategoriController extends Controller
         ]);
         return redirect('nama-kategori')->with('success','Nama Kategori Berhasil Ditambah');
     }
+
+    // UPDATE KATEGORI
     public function update(Request $request, $id)
     {
 
@@ -33,6 +38,8 @@ class KategoriController extends Controller
             ]);
         return redirect('nama-kategori')->with('success','Nama Kategori Berhasil Diubah');
     }
+
+    // DELETE KATEGORI
     public function destroy($id)
     {
          Kategori::where('id', $id)->delete();

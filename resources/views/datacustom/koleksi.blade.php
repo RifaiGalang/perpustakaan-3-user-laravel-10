@@ -42,9 +42,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
             <!-- Main content -->
-
             <div class="content">
                 <section class="content">
+                    @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <button type="button" class="close"
+                            data-dismiss="alert">×</button>
+                        <strong>{{ $message }}</strong>
+                    </div>
+                @endif
                     <div class="card-content mb-2">
                         <div class="row">
                             @foreach ($data as $a)
@@ -71,7 +77,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <i></i> Hapus Koleksi
                                         </a>
                                             <a type="button"
-                                            href="#"
+                                            href="/pinjam/tambah/{{ $a->buku->id }}"
                                             class="btn btn-primary">
                                             <i></i>Pinjam
                                         </a>
@@ -101,7 +107,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="modal-body">
                                 <div class="container">
                                     <div class="row">
-                                        <div class="col-md-5">
+                                        <div class="col-md-4">
                                             <div class="row justify-content-center">
                                                 @if ($b->buku->gambar)
                                                     <div class="mb-5">
@@ -113,7 +119,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         </div>
 
 
-                                        <ul class="list-group list-group-unbordered ml-5">
+                                        <ul class="list-group list-group-unbordered ml-3">
                                             <li class="list-group-item">
                                                 <b>Judul</b>
                                                 <label class="badge badge-info float-right">{{ $b->buku->judul }}</label>

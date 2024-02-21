@@ -25,12 +25,24 @@ class User extends Authenticatable
         'nama_lengkap',
         'alamat'
     ];
-    public function user(){
+
+    // MEMBERIKAN DATA KE TABEL PEMINJAMAN
+    public function user()
+    {
         return $this->hasMany(Peminjaman::class);
-        }
-    public function koleksibuku(){
+    }
+
+    // MEMBERIKAN DATA KE TABEL KOLEKSI PRIBADI
+    public function koleksibuku()
+    {
         return $this->hasMany(Koleksi::class);
-        }
+    }
+
+    // MEMBERIKAN DATA KE TABEL ULASAN BUKU
+    public function ulasan()
+    {
+        return $this->hasMany(Ulasan::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

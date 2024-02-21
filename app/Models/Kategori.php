@@ -16,13 +16,19 @@ class Kategori extends Model
         'id',
         'nama_kategori',
     ];
-    public function buku(){
+
+    // MEMBERIKAN DATA KE TABEL BUKU
+    public function buku()
+    {
         return $this->hasMany(Buku::class);
-        }
-    public function koleksi(){
+    }
+
+    // MEMBERIKAN DATA KE TABEL KOLEKSI PRIBADI
+    public function koleksi()
+    {
         return $this->hasMany(Koleksi::class);
-        }
-    
+    }
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 }

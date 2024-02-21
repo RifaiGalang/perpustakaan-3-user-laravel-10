@@ -27,12 +27,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="card-title">{{$title}}</h1>
+                            <h1 class="card-title">{{ $title }}</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="home">Home</a></li>
-                                <li class="breadcrumb-item active">{{$title}}</li>
+                                <li class="breadcrumb-item active">{{ $title }}</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -65,7 +65,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         <th>Judul Buku</th>
                                                         <th>Tanggal Pinjam</th>
                                                         <th>Status Peminjaman</th>
-                                                        <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -73,29 +72,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         $no = 1;
                                                     @endphp
                                                     @foreach ($data as $row)
-                                                        @if ($row->statuspeminjaman == 'Belum di Kembalikan')
+                                                        @if ($row->statuspeminjaman == 'Menunggu Konfirmasi' ||$row->statuspeminjaman == 'Belum di Kembalikan')
+                                                       
                                                             <tr>
                                                                 <td>{{ $no++ }}</td>
                                                                 <td>{{ $row->buku->judul }}</td>
                                                                 <td>{{ $row->tgl_pinjam }}</td>
                                                                 <td>
-                                                                @if ($row->statuspeminjaman=='Belum di Kembalikan' )
-                                                                <span
-                                                                class="badge bg-warning text-white">Belum di Kembalikan</span>
+                                                                    @if ($row->statuspeminjaman == 'Menunggu Konfirmasi')
+                                                                        <span
+                                                                            class="badge bg-warning text-white">Menunggu
+                                                                            Konfirmasi</span>
+                                                                    @elseif ($row->statuspeminjaman == 'Belum di Kembalikan')
+                                                                        <span
+                                                                            class="badge bg-danger text-white">Belum di Kembalikan</span>
 
-                                                                @endif
-                                                               </td>
-                                                                <td>
-
-                                                                    <a type="button"
-                                                                        href="/kembalikan/{{ $row->id }}"
-                                                                        class="btn btn-xs btn-info">
-                                                                        <i>
-                                                                        </i> Kembali
-                                                                    </a>
+                                                                    @endif
                                                                 </td>
                                                             </tr>
-                                                        @endif
+                                                    @endif
                                                     @endforeach
                                                 </tbody>
                                             </table>

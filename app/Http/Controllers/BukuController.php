@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Buku;
 use App\Models\Kategori;
-use App\Models\Relasikategori;
+use App\Models\Ulasan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
 class BukuController extends Controller
 {
+    // DATA BUKU ALL
     public function index()
     {
         $data=Buku::all();
@@ -19,9 +20,11 @@ class BukuController extends Controller
             'title'=>'Data Buku',
             'kategori' => Kategori::all(),
             'buku' => Buku::all(),
+            'ulasan' => Ulasan::all(),
             'data'=>$data,
         ]);
     }
+    // CREATE BUKU
     public function tambahbuku(Request $request)
     {
         $request->validate(
@@ -31,6 +34,7 @@ class BukuController extends Controller
                 'penulis' => 'required',
                 'penerbit' => 'required',
                 'tahun_terbit' => 'required',
+                'stok' => 'required',
                 'gambar' => 'required|image|mimes:png,jpg,jpeg,svg|max:2048',
 
             ],
@@ -40,6 +44,7 @@ class BukuController extends Controller
                 'penulis.required' => 'wajib diisi',
                 'penerbit.required' => 'wajib diisi',
                 'tahun_terbit.required' => 'wajib diisi',
+                'stok.required' => 'wajib diisi',
 
             ]
         );
@@ -50,6 +55,7 @@ class BukuController extends Controller
             'penulis' => $request->penulis,
             'penerbit' => $request->penerbit,
             'tahun_terbit' => $request->tahun_terbit,
+            'stok'=>$request->stok,
 
         ]);
         if ($request->hasFile('gambar')) {
@@ -63,6 +69,8 @@ class BukuController extends Controller
         Buku::create($data_buku);
         return redirect('data-buku')->with('success','Buku Berhasil Ditambah');
     }
+
+    // UPDATE BUKU
     public function update(Request $request, $id)
     {
 
@@ -72,6 +80,7 @@ class BukuController extends Controller
             'penulis' => $request->penulis,
             'penerbit' => $request->penerbit,
             'tahun_terbit' => $request->tahun_terbit,
+            'stok'=> $request->stok,
 
         ]);
         if ($request->hasFile('gambar')) {
@@ -87,6 +96,8 @@ class BukuController extends Controller
         Buku:: where('id',$id)->update($data_edit);
         return redirect('data-buku')->with('success','Buku Berhasil Diubah');
     }
+
+    // DELETE BUKU
     public function destroy($id){
         $data_delete = Buku:: where('id',$id)->first();
         File:: delete(public_path('gambar').'/'. $data_delete->gambar);

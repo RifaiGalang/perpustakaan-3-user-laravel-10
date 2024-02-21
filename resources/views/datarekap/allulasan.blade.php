@@ -51,22 +51,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <div class="card-header">
                                         <!-- /.card-header -->
                                         <div class="card-body">
-                                            @if ($message = Session::get('success'))
-                                                <div class="alert alert-success">
-                                                    <button type="button" class="close"
-                                                        data-dismiss="alert">×</button>
-                                                    <strong>{{ $message }}</strong>
-                                                </div>
-                                            @endif
                                             <table id="example1" class="table table-bordered table-striped">
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
                                                         <th>Nama Lengkap</th>
                                                         <th>Judul</th>
-                                                        <th>Tanggal Pinjam</th>
-                                                        <th>Tanggal Kembali</th>
-                                                        <th>Status Peminjaman</th>
+                                                        <th>Rating</th>
+                                                        <th>Ulasan</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -78,19 +70,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                             <td>{{ $no++ }}</td>
                                                             <td>{{ $row->user->nama_lengkap }}</td>
                                                             <td>{{ $row->buku->judul }}</td>
-                                                            <td>{{ $row->tgl_pinjam }}</td>
-                                                            <td>{{ $row->tgl_kembali }}</td>
                                                             <td>
-                                                                @if ($row->statuspeminjaman=='Menunggu Konfirmasi' )
-                                                                <span class="badge bg-warning text-white">Menunggu Konfirmasi</span>
-
-                                                                @elseif ($row->statuspeminjaman=='Belum di Kembalikan' )
-                                                                <span class="badge bg-danger text-white">Belum di Kembalikan</span>
-
-                                                                @elseif ($row->statuspeminjaman =='Sudah di Kembalikan')
-                                                                <span class="badge bg-success text-white">Sudah di Kembalikan</span>
-
-                                                                @endif
+                                                               @if ( $row->rating=='5')
+                                                            <span>⭐⭐⭐⭐⭐</span></td>
+                                                               @elseif ( $row->rating=='4')
+                                                            <span>⭐⭐⭐⭐</span></td>
+                                                               @elseif ( $row->rating=='3')
+                                                            <span>⭐⭐⭐</span></td>
+                                                               @elseif ( $row->rating=='2')
+                                                            <span>⭐⭐</span></td>
+                                                               @elseif ( $row->rating=='1')
+                                                            <span>⭐</span></td>
+                                                            @endif
+                                                            <td>{{ $row->ulasan }}</td>
+                                                          
                                                             </td>
                                                         </tr>
                                                     @endforeach

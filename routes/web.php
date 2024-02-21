@@ -36,10 +36,9 @@ route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 //HOME BERDASARKAN SETELAH LOGIN 
 Route::middleware(['auth'])->group(function () {
     route::get('/home', [HomeController::class, 'index'])->name('home');
-    // route::get('/viewdata', [HomeController::class, 'viewdata'])->name('viewdata');
 });
 
-//CRUD USER
+//CRUD MASTER DATA OLEH ADMIN & PETUGAS
 Route::middleware(['auth', 'checkrole:admin,petugas'])->group(function () {
     route::get('/data-user', [UserController::class, 'index'])->name('data-user');
     route::post('/data-user/tambah', [UserController::class, 'tambahuser']);
@@ -57,17 +56,26 @@ Route::middleware(['auth', 'checkrole:admin,petugas'])->group(function () {
     route::get('/nama-kategori/destroy/{id}', [KategoriController::class, 'destroy']);
 });
 
-//CRUD PEMINJAMAN OLEH USER
+//CREATE PEMINJAMAN OLEH USER
 Route::middleware(['auth', 'checkrole:peminjam,petugas'])->group(function () {
     route::get('/pinjam', [PeminjamanController::class, 'index'])->name('pinjam');
     route::get('/pinjam/tambah/{id}', [PeminjamanController::class, 'pinjamtambah'])->name('pinjamtambah');
-    route::get('/kembalikan/{id}', [PeminjamanController::class, 'kembaliupdate'])->name('kembalitambah');
     route::get('/detailpinjam', [PeminjamanController::class, 'detail'])->name('detailpinjam');
+    //ULASAN
+    route::post('/ulasan/tambah/{id}', [PeminjamanController::class, 'ulasantambah'])->name('ulasantambah');
+});
+
+//KOMFIRMASI PEMINJAMAN OLEH PETUGAS
+Route::middleware(['auth', 'checkrole:petugas'])->group(function () {
+    route::get('/konfirmasi-pinjam', [PeminjamanController::class, 'allkonfirmpinjam'])->name('allkonfrimpinjam');
+    route::get('/konfirmasi-status/{id}', [PeminjamanController::class, 'updatestatus'])->name('updatestatus');
+    route::get('/kembalikan/{id}', [PeminjamanController::class, 'kembaliupdate'])->name('kembalitambah');
 });
 
 //CEK ALL DATA OLEH ADMIN
-Route::middleware(['auth', 'checkrole:admin'])->group(function () {
+Route::middleware(['auth', 'checkrole:admin,petugas'])->group(function () {
     route::get('/alldatapinjam', [PeminjamanController::class, 'alldatapinjam'])->name('alldatapinjam');
+    route::get('/ulasanview', [PeminjamanController::class, 'ulasanview'])->name('ulasanview');
 });
 
 //CRUD KOLEKSI OLEH PEMINJAM
@@ -75,4 +83,5 @@ Route::middleware(['auth', 'checkrole:peminjam'])->group(function () {
     route::get('/koleksi-pribadi',[KoleksipribadiController::class, 'index'])->name('koleksi');
     route::get('/koleksi/tambah/{id}',[KoleksipribadiController::class, 'koleksitambah'])->name('koleksitambah');
     route::get('/koleksi-pribadi/destroy/{id}', [KoleksipribadiController::class, 'destroy']);
+    route::get('/koleksi/pinjam/{id}', [KoleksipribadiController::class, 'Koleksipinjam'])->name('koleksipinjam');
 });

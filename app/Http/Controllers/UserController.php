@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
+    // HALAMAN DATA USER
     public function index()
     {
         $data = array(
@@ -17,6 +18,8 @@ class UserController extends Controller
 
         return view('datamaster.user', $data);
     }
+
+    // CREATE USER
     public function tambahuser(Request $request)
     {
 
@@ -31,6 +34,8 @@ class UserController extends Controller
         ]);
         return redirect('data-user')->with('success','Data Berhasil Disimpan');
     }
+
+    //UPDATE USER
     public function update(Request $request, $id)
     {
 
@@ -46,6 +51,8 @@ class UserController extends Controller
             ]);
         return redirect('data-user')->with('success','Data Berhasil Diubah');
     }
+
+    // DELETE USER
     public function destroy($id)
     {
          User::where('id', $id)->delete();

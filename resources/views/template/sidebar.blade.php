@@ -29,14 +29,17 @@
                with font-awesome or any other icon font library -->
 
                 <li class="nav-item">
-                    <a href="home" class="nav-link {{ request()->is('home') ? 'active' : ''}}">
+                    <a href="home" class="nav-link {{ request()->is('home') ? 'active' : '' }}">
                         <i class="fa-solid fa-home"></i>
                         <p>Home</p>
                     </a>
                 </li>
+
                 @if (Auth::user()->role == 'admin' || Auth::user()->role == 'petugas')
-                    <li class="nav-item menu-open">
+                <li class="nav-header">MASTER</li>
+                    <li class="nav-item menu">
                         <a class="nav-link ">
+                            <i class="fa-solid fa-database"></i>
                             <p>
                                 Master Data
                                 <i class="right fas fa-angle-left"></i>
@@ -44,71 +47,86 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="data-user" class="nav-link {{ request()->is('data-user') ? 'active' : ''}}">
+                                <a href="data-user" class="nav-link {{ request()->is('data-user') ? 'active' : '' }}">
                                     <i class="fa-solid fa-users"></i>
                                     <p>Data Pengguna</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="data-buku" class="nav-link {{ request()->is('data-buku') ? 'active' : ''}}">
+                                <a href="data-buku" class="nav-link {{ request()->is('data-buku') ? 'active' : '' }}">
                                     <i class="fa-solid fa-book"></i>
                                     <p>Data Buku</p>
                                 </a>
                             <li class="nav-item">
-                                <a href="nama-kategori" class="nav-link {{ request()->is('nama-kategori') ? 'active' : ''}}">
+                                <a href="nama-kategori"
+                                    class="nav-link {{ request()->is('nama-kategori') ? 'active' : '' }}">
                                     <i class="fa-solid fa-bars"></i>
                                     <p>Nama Kategori</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                   
                 @endif
-                <li class="nav-item menu-open">
-                    <a class="nav-link">
-                        <p>Peminjaman
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        @if (Auth::user()->role == 'peminjam' || Auth::user()->role == 'petugas')
+                @if (Auth::user()->role == 'peminjam')
+                <li class="nav-header">LAYOUT</li>
+                    <li class="nav-item menu">
+                        <a class="nav-link">
+                            <p>Peminjaman
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
                             <li class="nav-item ">
-                                <a href="pinjam" class="nav-link {{ request()->is('pinjam') ? 'active' : ''}}">
+                                <a href="pinjam" class="nav-link {{ request()->is('pinjam') ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Daftar buku</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="detailpinjam" class="nav-link  {{ request()->is('detailpinjam') ? 'active' : ''}}">
+                                <a href="detailpinjam"
+                                    class="nav-link  {{ request()->is('detailpinjam') ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Daftar Pinjaman</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="koleksi-pribadi" class="nav-link {{ request()->is('koleksi-pribadi') ? 'active' : ''}}">
+                                <a href="koleksi-pribadi"
+                                    class="nav-link {{ request()->is('koleksi-pribadi') ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Koleksi Pribadi</p>
                                 </a>
                             </li>
-                        @endif
-                        @if (Auth::user()->role == 'admin')
-                            <li class="nav-item">
-                                <a href="alldatapinjam" class="nav-link {{ request()->is('alldatapinjam') ? 'active' : ''}}">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Daftar Pinjaman</p>
-                                </a>
-                            </li>
-                        @endif
-                    </ul>
-                </li>
-                @if (Auth::user()->role == 'admin'  || Auth::user()->role == 'petugas')
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fa-solid fa-print"></i>
-                        <p>Cetak Laporan</p>
-                    </a>
-                </li>
+
+                        </ul>
+                    </li>
                 @endif
+
+                @if (Auth::user()->role == 'admin' || Auth::user()->role == 'petugas')
+                <li class="nav-header">DATA</li>
+                    <li class="nav-item">
+                        <a href="konfirmasi-pinjam"
+                            class="nav-link {{ request()->is('konfirmasi-pinjam') ? 'active' : '' }}">
+                            <i class="fa-solid fa-feather-pointed"></i>
+                            <p>Peminjaman</p>
+                        </a>
+                    </li>
+                @endif
+                @if (Auth::user()->role == 'admin' || Auth::user()->role == 'petugas')
+                <li class="nav-header">LAYOUT</li>
+                    <li class="nav-item">
+                        <a href="alldatapinjam" class="nav-link {{ request()->is('alldatapinjam') ? 'active' : '' }}">
+                            <i class="fa-solid fa-print"></i>
+                            <p>Cetak Laporan</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="ulasanview" class="nav-link {{ request()->is('ulasanview') ? 'active' : '' }}">
+                            <i class="fa-solid fa-star"></i>
+                            <p>Ulasan</p>
+                        </a>
+                    </li>
+                @endif
+
                 <li class="nav-item">
                     <a href="logout" class="nav-link">
                         <i class="fa-solid fa-right-from-bracket"></i>

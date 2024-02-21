@@ -57,6 +57,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         data-dismiss="alert">×</button>
                                                     <strong>{{ $message }}</strong>
                                                 </div>
+                                            @elseif ($message = Session::get('errors'))
+                                                <div class="alert alert-danger">
+                                                    <button type="button" class="close"
+                                                        data-dismiss="alert">×</button>
+                                                    <strong>{{ $message }}</strong>
+                                                </div>
                                             @endif
                                             <table id="example1" class="table table-bordered table-striped">
                                                 <thead>
@@ -83,8 +89,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                             <td>
                                                                 <button data-toggle="modal"
                                                                     href="#modalShow{{ $row->id }}"
-                                                                    class="btn btn-link btn-success">
+                                                                    class="btn btn-success">
                                                                     <i class="fas fa-eye text-white"></i>
+                                                                </button>
+                                                                <button data-toggle="modal"
+                                                                    href="#modalUlasan{{ $row->id }}"
+                                                                    class="btn btn-warning text-white">
+                                                                    <i></i> Ulasan
                                                                 </button>
                                                                 <a type="button"
                                                                     href="/pinjam/tambah/{{ $row->id }}"
@@ -124,7 +135,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="modal-body">
                                     <div class="container">
                                         <div class="row">
-                                            <div class="col-md-5">
+                                            <div class="col-md-4">
                                                 <div class="row justify-content-center">
                                                     @if ($d->gambar)
                                                         <div class="mb-5">
@@ -134,9 +145,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     @endif
                                                 </div>
                                             </div>
-
-
-                                            <ul class="list-group list-group-unbordered ml-5">
+                                            <ul class="list-group list-group-unbordered ml-3">
                                                 <li class="list-group-item">
                                                     <b>Judul</b>
                                                     <label
@@ -173,6 +182,59 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+
+                {{-- Form Ulasan --}}
+                @foreach ($data as $e)
+                    <div class="modal fade" id="modalUlasan{{ $e->id }}" tabindex="-1" role="dialog"
+                        aria-hidden="true">
+                        <div class="modal-dialog ">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Create Kategori Buku</h5>
+                                    <button type="button" class="close"
+                                        data-dismiss="modal"><span>&times;</span></button>
+                                </div>
+                                <form method="POST" action="/ulasan/tambah/{{ $e->id }}"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label>Berikan Ulasan</label>
+                                            <input type="text" class="form-control" name="ulasan"
+                                                placeholder="Berikan Ulasan ..." required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Rating</label>
+                                            <select class="form-control" name="rating" required>
+                                                <option <?php if ($d['rating'] == '5') {
+                                                    echo 'selected';
+                                                } ?> value="5">5</option>
+                                                <option <?php if ($d['rating'] == '4') {
+                                                    echo 'selected';
+                                                } ?> value="4">4</option>
+                                                <option <?php if ($d['rating'] == '3') {
+                                                    echo 'selected';
+                                                } ?> value="3">3</option>
+                                                <option <?php if ($d['rating'] == '2') {
+                                                    echo 'selected';
+                                                } ?> value="2">2</option>
+                                                <option <?php if ($d['rating'] == '1') {
+                                                    echo 'selected';
+                                                } ?> value="1">1</option>
+                                            </select>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
+                                                    class="fa fa-undo"></i> Batal</button>
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="fa-solid fa-paper-plane"></i> Kirim</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

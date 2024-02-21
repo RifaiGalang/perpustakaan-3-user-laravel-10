@@ -106,6 +106,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                     required>
                                                             </div>
                                                             <div class="form-group">
+                                                                <label>Stok</label>
+                                                                <input type="text" class="form-control"
+                                                                    name="stok" placeholder="Stok ..."
+                                                                    required>
+                                                            </div>
+                                                            <div class="form-group">
                                                                 <label for="gambar" class="form-label">Gambar</label>
                                                                 <input type="file" class="form-control"
                                                                     name="gambar">
@@ -140,6 +146,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         <th>Penulis</th>
                                                         <th>Penerbit</th>
                                                         <th>Tahun Terbit</th>
+                                                        <th>Stok</th>
                                                         <th>Gambar</th>
                                                         <th>Action</th>
                                                     </tr>
@@ -157,6 +164,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                 <td>{{ $row->penulis }}</td>
                                                                 <td>{{ $row->penerbit }}</td>
                                                                 <td>{{ $row->tahun_terbit }}</td>
+                                                                <td>{{ $row->stok }}</td>
                                                                 <td><img src="gambar/{{ $row->gambar }} "alt=" "
                                                                         width="60px" class=""></td>
                                                                 <td>
@@ -182,6 +190,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         <th>Penulis</th>
                                                         <th>Penerbit</th>
                                                         <th>Tahun Terbit</th>
+                                                        <th>Stok</th>
                                                         <th>Gambar</th>
                                                         <th>Action</th>
                                                     </tr>
@@ -249,6 +258,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 class="form-control" name="tahun_terbit"
                                                 placeholder="Tahun Terbit ..." required>
                                         </div>
+                                        <div class="form-group">
+                                            <label>Stok</label>
+                                            <input type="text" value="{{ $d->stok }}"
+                                                class="form-control" name="stok"
+                                                placeholder="Stok ..." required>
+                                        </div>
                                         @if ($d->gambar)
                                             <div class="mb-2">
                                                 <img src="{{ url('gambar') . '/' . $d->gambar }}" alt=""
@@ -278,7 +293,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="modal-dialog ">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Hapus Data User</h5>
+                                    <h5 class="modal-title">Hapus Data Buku</h5>
                                     <button type="button" class="close"
                                         data-dismiss="modal"><span>&times;</span></button>
                                 </div>

@@ -9,7 +9,7 @@ class Buku extends Model
 {
     use HasFactory;
     protected $table = 'buku';
-    protected $primaryKey ='id';
+    protected $primaryKey = 'id';
     protected $fillable = [
         'id',
         'judul',
@@ -17,19 +17,33 @@ class Buku extends Model
         'penulis',
         'penerbit',
         'tahun_terbit',
+        'stok',
         'gambar'
     ];
-    public function kategori(){
-        return $this->belongsTo(Kategori::class,'id_kategori','id');
-        }
-    public function buku(){
-        return $this->hasMany(Peminjaman::class);
-        }
-    public function koleksi(){
-        return $this->hasMany(Koleksi::class);
-        }
-    
 
+    // MENGAMBIL DATA PADA TABEL KATEGORI
+    public function kategori()
+    {
+        return $this->belongsTo(Kategori::class, 'id_kategori', 'id');
+    }
+
+    // MEMBERIKAN DATA KE TABEL PEMINJAMAN
+    public function buku()
+    {
+        return $this->hasMany(Peminjaman::class);
+    }
+
+    // MEMBERIKAN DATA KE TABEL KOLEKSI PRIBADI
+    public function koleksi()
+    {
+        return $this->hasMany(Koleksi::class);
+    }
+
+    // MEMBERIKAN DATA KE TABEL ULASAN BUKU
+    public function ulasan()
+    {
+        return $this->hasMany(Ulasan::class);
+    }
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 }

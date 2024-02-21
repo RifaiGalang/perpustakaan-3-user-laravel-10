@@ -14,8 +14,10 @@ return new class extends Migration
          
         Schema::create('peminjaman', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('id_user');
-            $table->bigInteger('id_buku');
+            $table->unsignedBigInteger('id_user');
+            $table->foreign('id_user')->references('id')->on('users');
+            $table->unsignedBigInteger('id_buku');
+            $table->foreign('id_buku')->references('id')->on('buku');
             $table->string('tgl_pinjam');
             $table->string('tgl_kembali'); 
             $table->timestamps();
