@@ -14,8 +14,11 @@ return new class extends Migration
         Schema::create('buku', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
-            $table->string('penulis');
-            $table->string('penerbit');
+            $table->unsignedBigInteger('id_kategori');
+            $table->foreign('id_kategori')->references('id')->on('kategori');
+            $table->string('penulis'); 
+            $table->unsignedBigInteger('id_penerbit');
+            $table->foreign('id_penerbit')->references('id')->on('penerbit');
             $table->string('tahun_terbit');
             $table->string('gambar'); 
             $table->timestamps();

@@ -65,6 +65,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         <th>Judul Buku</th>
                                                         <th>Tanggal Pinjam</th>
                                                         <th>Status Peminjaman</th>
+                                                        <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -72,8 +73,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         $no = 1;
                                                     @endphp
                                                     @foreach ($data as $row)
-                                                        @if ($row->statuspeminjaman == 'Menunggu Konfirmasi' ||$row->statuspeminjaman == 'Belum di Kembalikan')
-                                                       
+                                                        @if ($row->statuspeminjaman == 'Menunggu Konfirmasi' || $row->statuspeminjaman == 'Belum di Kembalikan')
                                                             <tr>
                                                                 <td>{{ $no++ }}</td>
                                                                 <td>{{ $row->buku->judul }}</td>
@@ -84,28 +84,59 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                             class="badge bg-warning text-white">Menunggu
                                                                             Konfirmasi</span>
                                                                     @elseif ($row->statuspeminjaman == 'Belum di Kembalikan')
-                                                                        <span
-                                                                            class="badge bg-danger text-white">Belum di Kembalikan</span>
-
+                                                                        <span class="badge bg-danger text-white">Belum
+                                                                            di Kembalikan</span>
+                                                                    @endif
+                                                                </td>
+                                                                <td>
+                                                                    @if ($row->statuspeminjaman == 'Menunggu Konfirmasi')
+                                                                        <button class="btn btn-xs btn-danger"
+                                                                            data-toggle="modal"
+                                                                            href="#modalHapus{{ $row->id }}">
+                                                                            Batalkan
+                                                                        </button>
                                                                     @endif
                                                                 </td>
                                                             </tr>
-                                                    @endif
+                                                        @endif
                                                     @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <!-- /.card-body -->
                                     </div>
-                                    <!-- /.card -->
                                 </div>
-                                <!-- /.col -->
                             </div>
-                            <!-- /.row -->
                         </div>
-                        <!-- /.container-fluid -->
                     </div>
                 </section>
+                @foreach ($data as $a)
+                    <div class="modal fade" id="modalHapus{{ $a->id }}" tabindex="-1" role="dialog"
+                        aria-hidden="true">
+                        <div class="modal-dialog ">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Batalkan Pinjaman</h5>
+                                    <button type="button" class="close"
+                                        data-dismiss="modal"><span>&times;</span></button>
+                                </div>
+                                <form method="GET" action="/pinjam/destroy/{{ $a->id }}">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label>Apakah Anda Yakin Membatalkan Peminjaman?</label>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-xs btn-secondary" data-dismiss="modal"><i
+                                                    class="fa fa-undo"></i> Close</button>
+                                            <button type="submit" class="btn btn-xs btn-danger">
+                                                Batalkan</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
 
@@ -136,7 +167,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 "responsive": true,
                 "lengthChange": false,
                 "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                "buttons": ["colvis"]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
             $('#example2').DataTable({
                 "paging": true,

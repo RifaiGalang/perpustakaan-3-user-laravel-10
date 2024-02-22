@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
@@ -6,7 +6,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <html lang="en">
 
 <head>
-    <title>Perpustakaan | User</title>
+    <title>Perpustakaan | Kategori-name</title>
     @include('template.head')
 </head>
 
@@ -27,12 +27,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="card-title">{{$title}}</h1>
+                            <h1 class="card-title">{{ $title }}</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="home">Home</a></li>
-                                <li class="breadcrumb-item active">{{$title}}</li>
+                                <li class="breadcrumb-item active">{{ $title }}</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -63,50 +63,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <div class="modal-dialog ">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Create Data Buku</h5>
+                                                        <h5 class="modal-title">Create Penerbit Buku</h5>
                                                         <button type="button" class="close"
                                                             data-dismiss="modal"><span>&times;</span></button>
                                                     </div>
-                                                    <form method="POST" action="/data-user/tambah">
+                                                    <form method="POST" action="/nama-penerbit/tambah"
+                                                        enctype="multipart/form-data">
                                                         @csrf
                                                         <div class="modal-body">
                                                             <div class="form-group">
-                                                                <label>Username</label>
-                                                                <input type="username" class="form-control"
-                                                                    name="username" placeholder="Username ..."
-                                                                    required>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Email</label>
-                                                                <input type="email" class="form-control"
-                                                                    name="email" placeholder="Email ..." required>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Password</label>
-                                                                <input type="password" class="form-control"
-                                                                    name="password" placeholder="Password ..."
-                                                                    required>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Role</label>
-                                                                <select class="form-control" name="role" required>
-                                                                    <option value="" hidden>--PILIH ROLE--
-                                                                    </option>
-                                                                    {{-- <option value="admin">Admin</option> --}}
-                                                                    <option value="petugas">Petugas</option>
-                                                                    <option value="peminjam">Peminjam</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Nama Lengkap</label>
+                                                                <label>Nama Penerbit</label>
                                                                 <input type="text" class="form-control"
-                                                                    name="nama_lengkap" placeholder="Nama Lengkap ..."
+                                                                    name="nama_penerbit" placeholder="Nama Penerbit ..."
                                                                     required>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Alamat</label>
-                                                                <input type="text" class="form-control"
-                                                                    name="alamat" placeholder="Alamat ..." required>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
@@ -123,20 +92,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <!-- /.card-header -->
                                         <div class="card-body">
                                             @if ($message = Session::get('success'))
-                                            <div class="alert alert-info">
-                                              <button type="button" class="close" data-dismiss="alert">×</button>	
-                                                <strong>{{ $message }}</strong>
-                                            </div>
+                                                <div class="alert alert-info">
+                                                    <button type="button" class="close"
+                                                        data-dismiss="alert">×</button>
+                                                    <strong>{{ $message }}</strong>
+                                                </div>
                                             @endif
-                                           <table id="example1" class="table table-bordered table-striped">
+                                            <table id="example1" class="table table-bordered table-striped">
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
-                                                        <th>Username</th>
-                                                        <th>Email</th>
-                                                        <th>Role</th>
-                                                        <th>Nama Lengkap</th>
-                                                        <th>Alamat</th>
+                                                        <th>Nama Penerbit</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -144,14 +110,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     @php
                                                         $no = 1;
                                                     @endphp
-                                                    @foreach ($data_user as $row)
+                                                    @foreach ($data_namapenerbit as $row)
                                                         <tr>
                                                             <td>{{ $no++ }}</td>
-                                                            <td>{{ $row->username }}</td>
-                                                            <td>{{ $row->email }}</td>
-                                                            <td>{{ $row->role }}</td>
-                                                            <td>{{ $row->nama_lengkap }}</td>
-                                                            <td>{{ $row->alamat }}</td>
+                                                            <td>{{ $row->nama_penerbit }}</td>
                                                             <td>
                                                                 <button data-toggle="modal"
                                                                     class="btn btn-xs btn-primary"
@@ -161,7 +123,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                 <button data-toggle="modal"
                                                                     data-target="#modalHapus{{ $row->id }}"
                                                                     class="btn btn-xs btn-danger"> <i
-                                                                        class="fa fa-trash"></i>Hapus</button>
+                                                                        class="fa fa-trash"></i> Hapus</button>
                                                             </td>
                                                         </tr>
                                                     @endforeach
@@ -181,64 +143,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </section>
 
 
+
+
+
                 {{-- form modal update --}}
-                @foreach ($data_user as $d)
+                @foreach ($data_namapenerbit as $d)
                     <div class="modal fade" id="modalupdate{{ $d->id }}" tabindex="-1" role="dialog"
                         aria-hidden="true">
                         <div class="modal-dialog ">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Edit Data User</h5>
+                                    <h5 class="modal-title">Edit Nama Kategori</h5>
                                     <button type="button" class="close"
                                         data-dismiss="modal"><span>&times;</span></button>
                                 </div>
-                                <form method="POST" action="/data-user/update/{{ $d->id }}">
+                                <form method="POST" action="/nama-penerbit/update/{{ $d->id }}"
+                                    enctype="multipart/form-data">
                                     @csrf
                                     <div class="modal-body">
                                         <div class="form-group">
-                                            <label>Username</label>
-                                            <input type="username" value="{{ $d->username }}" class="form-control"
-                                                name="username" placeholder="Username ..." required>
+                                            <label>Nama Penerbit</label>
+                                            <input type="text" value="{{ $d->nama_penerbit }}" class="form-control"
+                                                name="nama_penerbit" placeholder="Nama Penerbit ..." required>
                                         </div>
-                                        <div class="form-group">
-                                            <label>Email</label>
-                                            <input type="email" value="{{ $d->email }}" class="form-control"
-                                                name="email" placeholder="Email ..." required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Password</label>
-                                            <input type="password" class="form-control" name="password"
-                                                placeholder="Password ..." required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Role</label>
-                                            <select class="form-control" name="role" required>
-                                               
-                                                <option <?php if ($d['role'] == 'petugas') {
-                                                    echo 'selected';
-                                                } ?> value="petugas">Petugas</option>
-                                                <option <?php if ($d['role'] == 'peminjam') {
-                                                    echo 'selected';
-                                                } ?> value="peminjam">Peminjam</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Nama Lengkap</label>
-                                            <input type="text" value="{{ $d->nama_lengkap }}"
-                                                class="form-control" name="nama_lengkap"
-                                                placeholder="Nama Lengkap ..." required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Alamat</label>
-                                            <input type="text" value="{{ $d->alamat }}" class="form-control"
-                                                name="alamat" placeholder="Alamat ..." required>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-dismiss="modal"><i class="fa fa-undo"></i>Close</button>
-                                                <button type="submit" class="btn btn-primary"><i
-                                                        class="fa fa-save"></i>Save
-                                                    changes</button>
-                                            </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
+                                                    class="fa fa-undo"></i> Close</button>
+                                            <button type="submit" class="btn btn-primary"><i
+                                                    class="fa fa-save"></i> Save changes</button>
                                         </div>
                                     </div>
                                 </form>
@@ -246,8 +178,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div>
                     </div>
                 @endforeach
-                {{--  form modal hapus user --}}
-                @foreach ($data_user as $c)
+                {{-- form modal hapus --}}
+                @foreach ($data_namapenerbit as $c)
                     <div class="modal fade" id="modalHapus{{ $c->id }}" tabindex="-1" role="dialog"
                         aria-hidden="true">
                         <div class="modal-dialog ">
@@ -257,7 +189,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <button type="button" class="close"
                                         data-dismiss="modal"><span>&times;</span></button>
                                 </div>
-                                <form method="GET" action="/data-user/destroy/{{ $c->id }}">
+                                <form method="GET" action="/nama-penerbit/destroy/{{ $c->id }}">
                                     @csrf
                                     <div class="modal-body">
                                         <div class="form-group">
@@ -265,9 +197,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
-                                                    class="fa fa-undo"></i>Close</button>
+                                                    class="fa fa-undo"></i> Close</button>
                                             <button type="submit" class="btn btn-danger"><i
-                                                    class="fa fa-trash"></i>Hapus</button>
+                                                    class="fa fa-trash"></i> Hapus</button>
                                         </div>
                                     </div>
                                 </form>

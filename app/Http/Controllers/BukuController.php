@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Buku;
 use App\Models\Kategori;
+use App\Models\Penerbit;
 use App\Models\Ulasan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -19,6 +20,7 @@ class BukuController extends Controller
         return view('datamaster.buku', [
             'title'=>'Data Buku',
             'kategori' => Kategori::all(),
+            'penerbit' => Penerbit::all(),
             'buku' => Buku::all(),
             'ulasan' => Ulasan::all(),
             'data'=>$data,
@@ -53,7 +55,7 @@ class BukuController extends Controller
             'judul' => $request->judul,
             'id_kategori' => $request->id_kategori,
             'penulis' => $request->penulis,
-            'penerbit' => $request->penerbit,
+            'id_penerbit' => $request->id_penerbit,
             'tahun_terbit' => $request->tahun_terbit,
             'stok'=>$request->stok,
 
@@ -78,7 +80,7 @@ class BukuController extends Controller
             'judul' => $request->judul,
             'id_kategori' => $request->id_kategori,
             'penulis' => $request->penulis,
-            'penerbit' => $request->penerbit,
+            'id_penerbit' => $request->id_penerbit,
             'tahun_terbit' => $request->tahun_terbit,
             'stok'=> $request->stok,
 

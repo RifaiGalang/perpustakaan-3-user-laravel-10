@@ -1,12 +1,12 @@
 <?php
 
 use App\Http\Controllers\BukuController;
-use App\Http\Controllers\DetailpinjamController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KoleksipribadiController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\PenerbitController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -54,12 +54,20 @@ Route::middleware(['auth', 'checkrole:admin,petugas'])->group(function () {
     route::post('/nama-kategori/tambah', [KategoriController::class, 'tambahnamakategori']);
     route::post('/nama-kategori/update/{id}', [KategoriController::class, 'update']);
     route::get('/nama-kategori/destroy/{id}', [KategoriController::class, 'destroy']);
+    //CRUD PENERBIT
+    route::get('/nama-penerbit', [PenerbitController::class, 'index'])->name('penerbit-buku');
+    route::post('/nama-penerbit/tambah', [PenerbitController::class, 'tambahnamapenerbit']);
+    route::post('/nama-penerbit/update/{id}', [PenerbitController::class, 'update']);
+    route::get('/nama-penerbit/destroy/{id}', [PenerbitController::class, 'destroy']);
+
+    Route::get('/filter', [PeminjamanController::class, 'filter'])->name('filter');
 });
 
 //CREATE PEMINJAMAN OLEH USER
 Route::middleware(['auth', 'checkrole:peminjam,petugas'])->group(function () {
     route::get('/pinjam', [PeminjamanController::class, 'index'])->name('pinjam');
     route::get('/pinjam/tambah/{id}', [PeminjamanController::class, 'pinjamtambah'])->name('pinjamtambah');
+    route::get('/pinjam/destroy/{id}', [PeminjamanController::class, 'destroy'])->name('destroy');
     route::get('/detailpinjam', [PeminjamanController::class, 'detail'])->name('detailpinjam');
     //ULASAN
     route::post('/ulasan/tambah/{id}', [PeminjamanController::class, 'ulasantambah'])->name('ulasantambah');

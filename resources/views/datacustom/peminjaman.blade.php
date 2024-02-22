@@ -109,15 +109,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <!-- /.card-body -->
                                     </div>
-                                    <!-- /.card -->
                                 </div>
-                                <!-- /.col -->
                             </div>
-                            <!-- /.row -->
                         </div>
-                        <!-- /.container-fluid -->
                     </div>
                 </section>
                 {{-- form modal show detail --}}
@@ -269,7 +264,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 "responsive": true,
                 "lengthChange": false,
                 "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                "buttons": ["colvis"]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
             $('#example2').DataTable({
                 "paging": true,

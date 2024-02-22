@@ -45,12 +45,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="content">
                 <section class="content">
                     @if ($message = Session::get('success'))
-                    <div class="alert alert-success">
-                        <button type="button" class="close"
-                            data-dismiss="alert">×</button>
-                        <strong>{{ $message }}</strong>
-                    </div>
-                @endif
+                        <div class="alert alert-success">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
                     <div class="card-content mb-2">
                         <div class="row">
                             @foreach ($data as $a)
@@ -71,16 +70,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 class="btn btn-link btn-success">
                                                 <i class="fas fa-eye text-white"></i>
                                             </button>
-                                            <a type="button"
-                                            href="/koleksi-pribadi/destroy/{{ $a->id }}"
-                                            class="btn btn-danger">
-                                            <i></i> Hapus Koleksi
-                                        </a>
-                                            <a type="button"
-                                            href="/pinjam/tambah/{{ $a->buku->id }}"
-                                            class="btn btn-primary">
-                                            <i></i>Pinjam
-                                        </a>
+                                            <a type="button" href="/koleksi-pribadi/destroy/{{ $a->id }}"
+                                                class="btn btn-danger">
+                                                <i></i> Hapus Koleksi
+                                            </a>
+                                            <a type="button" href="/pinjam/tambah/{{ $a->buku->id }}"
+                                                class="btn btn-primary">
+                                                <i></i>Pinjam
+                                            </a>
 
 
                                         </div>
@@ -90,69 +87,74 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div>
                     </div>
                 </section>
-           
-            <!-- Main content/end -->
 
-            {{-- form modal show detail --}}
-            @foreach ($data as $b)
-                <div class="modal fade" id="modalShow{{ $b->id }}" tabindex="-1" role="dialog"
-                    aria-hidden="true">
-                    <div class="modal-dialog ">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Detail</h5>
-                                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-                            </div>
-                            @csrf
-                            <div class="modal-body">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="row justify-content-center">
-                                                @if ($b->buku->gambar)
-                                                    <div class="mb-5">
-                                                        <img src="{{ url('gambar') . '/' . $b->buku->gambar }}" alt=""
-                                                            width="170px">
-                                                    </div>
-                                                @endif
+                <!-- Main content/end -->
+
+                {{-- form modal show detail --}}
+                @foreach ($data as $b)
+                    <div class="modal fade" id="modalShow{{ $b->id }}" tabindex="-1" role="dialog"
+                        aria-hidden="true">
+                        <div class="modal-dialog ">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Detail</h5>
+                                    <button type="button" class="close"
+                                        data-dismiss="modal"><span>&times;</span></button>
+                                </div>
+                                @csrf
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="row justify-content-center">
+                                                    @if ($b->buku->gambar)
+                                                        <div class="mb-5">
+                                                            <img src="{{ url('gambar') . '/' . $b->buku->gambar }}"
+                                                                alt="" width="170px">
+                                                        </div>
+                                                    @endif
+                                                </div>
                                             </div>
+
+
+                                            <ul class="list-group list-group-unbordered ml-3">
+                                                <li class="list-group-item">
+                                                    <b>Judul</b>
+                                                    <label
+                                                        class="badge badge-info float-right">{{ $b->buku->judul }}</label>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <b>Kategori</b>
+                                                    <label
+                                                        class="badge badge-info float-right">{{ $b->buku->kategori->nama_kategori }}</label>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <b>Penulis</b>
+                                                    <label
+                                                        class="badge badge-info float-right">{{ $b->buku->penulis }}</label>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <b>Penerbit</b>
+                                                    <label
+                                                        class="badge badge-info float-right">{{ $b->buku->penerbit }}</label>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <b>Tahun Terbit</b>
+                                                    <label
+                                                        class="badge badge-info float-right">{{ $b->buku->tahun_terbit }}</label>
+                                                </li>
+                                            </ul>
+
                                         </div>
-
-
-                                        <ul class="list-group list-group-unbordered ml-3">
-                                            <li class="list-group-item">
-                                                <b>Judul</b>
-                                                <label class="badge badge-info float-right">{{ $b->buku->judul }}</label>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <b>Kategori</b>
-                                                <label class="badge badge-info float-right">{{ $b->buku->kategori->nama_kategori }}</label>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <b>Penulis</b>
-                                                <label class="badge badge-info float-right">{{ $b->buku->penulis }}</label>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <b>Penerbit</b>
-                                                <label class="badge badge-info float-right">{{ $b->buku->penerbit }}</label>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <b>Tahun Terbit</b>
-                                                <label
-                                                    class="badge badge-info float-right">{{ $b->buku->tahun_terbit }}</label>
-                                            </li>
-                                        </ul>
-
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
-        </div>
+                @endforeach
+            </div>
 
-    </div>
+        </div>
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
             <!-- Control sidebar content goes here -->

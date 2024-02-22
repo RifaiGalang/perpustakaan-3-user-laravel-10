@@ -52,6 +52,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                  </div>
              </div>
 
+
+             <div class="col-lg-3 col-6">
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>user</h3>
+                        <p>User</p>
+                    </div>
+                    <div class="icon">
+                        <i class="nav-icon fas fa-solid fa-user"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+
              <!-- /.content -->
          </div>
          <!-- /.content-wrapper -->

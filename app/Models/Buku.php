@@ -15,7 +15,7 @@ class Buku extends Model
         'judul',
         'id_kategori',
         'penulis',
-        'penerbit',
+        'id_penerbit',
         'tahun_terbit',
         'stok',
         'gambar'
@@ -25,6 +25,12 @@ class Buku extends Model
     public function kategori()
     {
         return $this->belongsTo(Kategori::class, 'id_kategori', 'id');
+    }
+
+    // MENGAMBIL DATA PADA TABEL PENERBIT
+    public function penerbit()
+    {
+        return $this->belongsTo(Penerbit::class, 'id_penerbit', 'id');
     }
 
     // MEMBERIKAN DATA KE TABEL PEMINJAMAN

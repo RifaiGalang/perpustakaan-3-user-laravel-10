@@ -25,18 +25,14 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-
                 <li class="nav-item">
                     <a href="home" class="nav-link {{ request()->is('home') ? 'active' : '' }}">
                         <i class="fa-solid fa-home"></i>
                         <p>Home</p>
                     </a>
                 </li>
-
                 @if (Auth::user()->role == 'admin' || Auth::user()->role == 'petugas')
-                <li class="nav-header">MASTER</li>
+                    <li class="nav-header">MASTER</li>
                     <li class="nav-item menu">
                         <a class="nav-link ">
                             <i class="fa-solid fa-database"></i>
@@ -57,6 +53,13 @@
                                     <i class="fa-solid fa-book"></i>
                                     <p>Data Buku</p>
                                 </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="nama-penerbit" class="nav-link {{ request()->is('nama-penerbit') ? 'active' : '' }}">
+                                    <i class="fa-solid fa-list"></i>
+                                    <p>Nama Penerbit</p>
+                                </a>
+                            </li>
                             <li class="nav-item">
                                 <a href="nama-kategori"
                                     class="nav-link {{ request()->is('nama-kategori') ? 'active' : '' }}">
@@ -68,7 +71,7 @@
                     </li>
                 @endif
                 @if (Auth::user()->role == 'peminjam')
-                <li class="nav-header">LAYOUT</li>
+                    <li class="nav-header">LAYOUT</li>
                     <li class="nav-item menu">
                         <a class="nav-link">
                             <p>Peminjaman
@@ -101,8 +104,8 @@
                     </li>
                 @endif
 
-                @if (Auth::user()->role == 'admin' || Auth::user()->role == 'petugas')
-                <li class="nav-header">DATA</li>
+                @if (Auth::user()->role == 'petugas')
+                    <li class="nav-header">DATA</li>
                     <li class="nav-item">
                         <a href="konfirmasi-pinjam"
                             class="nav-link {{ request()->is('konfirmasi-pinjam') ? 'active' : '' }}">
@@ -112,7 +115,7 @@
                     </li>
                 @endif
                 @if (Auth::user()->role == 'admin' || Auth::user()->role == 'petugas')
-                <li class="nav-header">LAYOUT</li>
+                    <li class="nav-header">LAYOUT</li>
                     <li class="nav-item">
                         <a href="alldatapinjam" class="nav-link {{ request()->is('alldatapinjam') ? 'active' : '' }}">
                             <i class="fa-solid fa-print"></i>

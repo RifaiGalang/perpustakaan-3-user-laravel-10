@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use DateTime;
-use DateTimeZone;
+
 use App\Models\Buku;
 use App\Models\Kategori;
 use App\Models\Peminjaman;
+use App\Models\Penerbit;
 use App\Models\Ulasan;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -63,6 +63,26 @@ class PeminjamanController extends Controller
         ]);
     }
 
+    public function filter(Request $request)
+    {
+
+
+        $start_date = $request->start_date;
+        $end_date = $request->end_date;
+        $data = Peminjaman::whereDate('created_at', '>=', $start_date)
+            ->wheredate('created_at', '<=', $end_date)
+            ->get();
+        $kategori = Kategori::all();
+        return view('datarekap.allpinjam', [
+            'buku' => Buku::all(),
+            'title' => 'Cari',
+            'kategori' => $kategori,
+            'penerbit' => Penerbit::all(),
+            'peminjaman' => Peminjaman::all(),
+            'data' => $data,
+        ])->with('success', 'Berhasil Login');
+    }
+
     // DATA JUMLAH KONFIRMASI PEMINJAMAN 
     public function allkonfirmpinjam()
     {
@@ -103,6 +123,18 @@ class PeminjamanController extends Controller
             Peminjaman::create($data_pinjam);
             return redirect('detailpinjam')->with('success', 'Silahkan konfirmasi ke petugas');
         }
+    }
+
+    // DELETE KATEGORI
+    public function destroy($id)
+    {
+        $data = Peminjaman::findOrfail($id);
+        // Menambah Stok buku yang di kembalikan
+        $data->buku->update([
+            'stok' => $data->buku->stok + 1
+        ]);
+        Peminjaman::where('id', $id)->delete();
+        return redirect('detailpinjam')->with('success', 'Peminjaman Berhasil Dibatalkan');
     }
 
     // PROSES KONFIRMASI PEMINJAMAN OLEH PETUGAS
@@ -150,6 +182,8 @@ class PeminjamanController extends Controller
         Ulasan::create($data_ulasan);
         return redirect('pinjam')->with('success', 'Ulasan Berhasil di Kirim!');
     }
+
+    // VIEW DATA ULASAN OLEH ADMIN & PETUGAS
     public function ulasanview()
     {
         $data = Ulasan::all();

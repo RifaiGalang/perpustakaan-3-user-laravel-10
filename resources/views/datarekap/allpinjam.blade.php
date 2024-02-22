@@ -49,6 +49,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
+
                                         <!-- /.card-header -->
                                         <div class="card-body">
                                             @if ($message = Session::get('success'))
@@ -58,6 +59,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     <strong>{{ $message }}</strong>
                                                 </div>
                                             @endif
+                                            <form method="GET" action="/filter">
+                                                <div class="row pb-2">
+                                                    <div class="row g-5 align-items-center ml-1">
+                                                        <div class="col-3 pt-2">
+                                                            <label>Tanggal Awal :</label>
+                                                            <input type="date" name="start_date"
+                                                                class="form-control ">
+                                                        </div>
+                                                        <div class="col-3 pt-2">
+                                                            <label>Tanggal Akhir :</label>
+                                                            <input type="date" name="end_date" class="form-control">
+                                                        </div>
+                                                        <div class="col-5 pt-5">
+                                                            <button type="submit"
+                                                                class="btn btn-secondary">Filter</button>
+
+                                                            <a type="submit" href="/alldatapinjam"
+                                                                class="btn btn-primary">
+                                                                Refresh</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
                                             <table id="example1" class="table table-bordered table-striped">
                                                 <thead>
                                                     <tr>
@@ -81,15 +105,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                             <td>{{ $row->tgl_pinjam }}</td>
                                                             <td>{{ $row->tgl_kembali }}</td>
                                                             <td>
-                                                                @if ($row->statuspeminjaman=='Menunggu Konfirmasi' )
-                                                                <span class="badge bg-warning text-white">Menunggu Konfirmasi</span>
-
-                                                                @elseif ($row->statuspeminjaman=='Belum di Kembalikan' )
-                                                                <span class="badge bg-danger text-white">Belum di Kembalikan</span>
-
-                                                                @elseif ($row->statuspeminjaman =='Sudah di Kembalikan')
-                                                                <span class="badge bg-success text-white">Sudah di Kembalikan</span>
-
+                                                                @if ($row->statuspeminjaman == 'Menunggu Konfirmasi')
+                                                                    <span class="badge bg-warning text-white">Menunggu
+                                                                        Konfirmasi</span>
+                                                                @elseif ($row->statuspeminjaman == 'Belum di Kembalikan')
+                                                                    <span class="badge bg-danger text-white">Belum di
+                                                                        Kembalikan</span>
+                                                                @elseif ($row->statuspeminjaman == 'Sudah di Kembalikan')
+                                                                    <span class="badge bg-success text-white">Sudah di
+                                                                        Kembalikan</span>
                                                                 @endif
                                                             </td>
                                                         </tr>
@@ -97,15 +121,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <!-- /.card-body -->
                                     </div>
-                                    <!-- /.card -->
                                 </div>
-                                <!-- /.col -->
                             </div>
-                            <!-- /.row -->
                         </div>
-                        <!-- /.container-fluid -->
                     </div>
                 </section>
 

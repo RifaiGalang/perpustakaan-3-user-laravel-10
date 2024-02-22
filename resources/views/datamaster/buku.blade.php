@@ -27,12 +27,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="card-title">{{$title}}</h1>
+                            <h1 class="card-title">{{ $title }}</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="home">Home</a></li>
-                                <li class="breadcrumb-item active">{{$title}}</li>
+                                <li class="breadcrumb-item active">{{ $title }}</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -57,6 +57,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 Tambah Data
                                             </button>
                                         </div>
+
                                         {{-- form modal create --}}
                                         <div class="modal fade" id="modalCreate" tabindex="-1" role="dialog"
                                             aria-hidden="true">
@@ -96,8 +97,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Penerbit</label>
-                                                                <input type="text" class="form-control"
-                                                                    name="penerbit" placeholder="Penerbit ..." required>
+                                                                <select class="form-control" name="id_penerbit"
+                                                                    required>
+                                                                    <option value="" hidden>--PILIH PENERBIT--
+                                                                    </option>
+                                                                    @foreach ($penerbit as $b)
+                                                                        <option value="{{ $b->id }}">
+                                                                            {{ $b->nama_penerbit }}</option>
+                                                                    @endforeach
+                                                                </select>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Tahun Terbit</label>
@@ -108,8 +116,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                             <div class="form-group">
                                                                 <label>Stok</label>
                                                                 <input type="text" class="form-control"
-                                                                    name="stok" placeholder="Stok ..."
-                                                                    required>
+                                                                    name="stok" placeholder="Stok ..." required>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="gambar" class="form-label">Gambar</label>
@@ -132,10 +139,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <!-- /.card-header -->
                                         <div class="card-body">
                                             @if ($message = Session::get('success'))
-                                            <div class="alert alert-success">
-                                              <button type="button" class="close" data-dismiss="alert">×</button>	
-                                                <strong>{{ $message }}</strong>
-                                            </div>
+                                                <div class="alert alert-success">
+                                                    <button type="button" class="close"
+                                                        data-dismiss="alert">×</button>
+                                                    <strong>{{ $message }}</strong>
+                                                </div>
                                             @endif
                                             <table id="example1" class="table table-bordered table-striped">
                                                 <thead>
@@ -156,30 +164,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         $no = 1;
                                                     @endphp
                                                     @foreach ($data as $row)
-                                                      
-                                                            <tr>
-                                                                <td>{{ $no++ }}</td>
-                                                                <td>{{ $row->judul }}</td>
-                                                                <td>{{ $row->kategori->nama_kategori}}</td>
-                                                                <td>{{ $row->penulis }}</td>
-                                                                <td>{{ $row->penerbit }}</td>
-                                                                <td>{{ $row->tahun_terbit }}</td>
-                                                                <td>{{ $row->stok }}</td>
-                                                                <td><img src="gambar/{{ $row->gambar }} "alt=" "
-                                                                        width="60px" class=""></td>
-                                                                <td>
-                                                                    <button data-toggle="modal"
-                                                                        class="btn btn-xs btn-primary"
-                                                                        data-target="#modalupdate{{ $row->id }}">
-                                                                        <i class="fa-solid fa-pen-to-square"></i>
-                                                                        Edit</i></button>
-                                                                    <button data-toggle="modal"
-                                                                        data-target="#modalHapus{{ $row->id }}"
-                                                                        class="btn btn-xs btn-danger"> <i
-                                                                            class="fa fa-trash"></i>Hapus</button>
-                                                                </td>
-                                                            </tr>
-                                                       
+                                                        <tr>
+                                                            <td>{{ $no++ }}</td>
+                                                            <td>{{ $row->judul }}</td>
+                                                            <td>{{ $row->kategori->nama_kategori }}</td>
+                                                            <td>{{ $row->penulis }}</td>
+                                                            <td>{{ $row->penerbit->nama_penerbit }}</td>
+                                                            <td>{{ $row->tahun_terbit }}</td>
+                                                            <td>{{ $row->stok }}</td>
+                                                            <td><img src="gambar/{{ $row->gambar }} "alt=" "
+                                                                    width="60px" class=""></td>
+                                                            <td>
+                                                                <button data-toggle="modal"
+                                                                    class="btn btn-xs btn-primary"
+                                                                    data-target="#modalupdate{{ $row->id }}">
+                                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                                                    Edit</i></button>
+                                                                <button data-toggle="modal"
+                                                                    data-target="#modalHapus{{ $row->id }}"
+                                                                    class="btn btn-xs btn-danger"> <i
+                                                                        class="fa fa-trash"></i>Hapus</button>
+                                                            </td>
+                                                        </tr>
                                                     @endforeach
                                                 </tbody>
                                                 <tfoot>
@@ -197,15 +203,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 </tfoot>
                                             </table>
                                         </div>
-                                        <!-- /.card-body -->
                                     </div>
-                                    <!-- /.card -->
                                 </div>
-                                <!-- /.col -->
                             </div>
-                            <!-- /.row -->
                         </div>
-                        <!-- /.container-fluid -->
                     </div>
                 </section>
 
@@ -232,12 +233,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         </div>
                                         <div class="form-group">
                                             <label>Kategori</label>
-                                            <select class="form-control" name="id_kategori"
-                                                required>
-                                                <option selected value="{{$d->id}}" >{{$d->kategori->nama_kategori}}
+                                            <select class="form-control" name="id_kategori" required>
+                                                <option selected value="{{ $d->id }}">
+                                                    {{ $d->kategori->nama_kategori }}
                                                 </option>
                                                 @foreach ($kategori as $b)
-                                                    <option  value="{{ $b->id }}">
+                                                    <option value="{{ $b->id }}">
                                                         {{ $b->nama_kategori }}</option>
                                                 @endforeach
                                             </select>
@@ -249,8 +250,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         </div>
                                         <div class="form-group">
                                             <label>Penerbit</label>
-                                            <input type="text" value="{{ $d->penerbit }}" class="form-control"
-                                                name="penerbit" placeholder="Penerbit ..." required>
+                                            <select class="form-control" name="id_penerbit" required>
+                                                <option selected value="{{ $d->id }}">
+                                                    {{ $d->penerbit->nama_penerbit }}
+                                                </option>
+                                                @foreach ($penerbit as $b)
+                                                    <option value="{{ $b->id }}">
+                                                        {{ $b->nama_penerbit }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label>Tahun Terbit</label>
@@ -260,9 +268,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         </div>
                                         <div class="form-group">
                                             <label>Stok</label>
-                                            <input type="text" value="{{ $d->stok }}"
-                                                class="form-control" name="stok"
-                                                placeholder="Stok ..." required>
+                                            <input type="text" value="{{ $d->stok }}" class="form-control"
+                                                name="stok" placeholder="Stok ..." required>
                                         </div>
                                         @if ($d->gambar)
                                             <div class="mb-2">
@@ -286,6 +293,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div>
                     </div>
                 @endforeach
+
                 {{-- form modal hapus --}}
                 @foreach ($buku as $c)
                     <div class="modal fade" id="modalHapus{{ $c->id }}" tabindex="-1" role="dialog"
@@ -316,6 +324,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </div>
                 @endforeach
             </div>
+            <!-- /.main content -->
         </div>
 
 
@@ -346,7 +355,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 "responsive": true,
                 "lengthChange": false,
                 "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                "buttons": ["colvis"]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
             $('#example2').DataTable({
                 "paging": true,
