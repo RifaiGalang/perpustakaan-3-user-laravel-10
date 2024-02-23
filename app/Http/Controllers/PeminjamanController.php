@@ -10,6 +10,7 @@ use App\Models\Penerbit;
 use App\Models\Ulasan;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PeminjamanController extends Controller
 {
@@ -63,10 +64,9 @@ class PeminjamanController extends Controller
         ]);
     }
 
+    // FILTER DATA PERTANGGAL OLEH ADMIN
     public function filter(Request $request)
     {
-
-
         $start_date = $request->start_date;
         $end_date = $request->end_date;
         $data = Peminjaman::whereDate('created_at', '>=', $start_date)
@@ -102,10 +102,11 @@ class PeminjamanController extends Controller
     // PROSES PENGAJUAN PEMINJAMAN OLEH PEMINJAM
     public function pinjamtambah(Request $request, $id)
     {
-        // Periksa ketersediaan stok buku yang spesifik dengan ID yang ditentukan
+        // Periksa ketersediaan stok buku sesuai ID buku yang dipilih
         $buku = Buku::find($id);
 
-        if (!$buku || $buku->stok == 0) { // Periksa jika  stok habis
+        // Periksa jika  stok habis
+        if (!$buku || $buku->stok == 0) {
             return redirect()->back()->with('errors', 'Buku tidak tersedia atau stok habis');
         } else {
             $data_pinjam = ([
@@ -123,18 +124,21 @@ class PeminjamanController extends Controller
             Peminjaman::create($data_pinjam);
             return redirect('detailpinjam')->with('success', 'Silahkan konfirmasi ke petugas');
         }
+        // }
+        // }
     }
 
-    // DELETE KATEGORI
+    // BATALKAN PEMINJAMAN
     public function destroy($id)
     {
+
         $data = Peminjaman::findOrfail($id);
         // Menambah Stok buku yang di kembalikan
         $data->buku->update([
             'stok' => $data->buku->stok + 1
         ]);
         Peminjaman::where('id', $id)->delete();
-        return redirect('detailpinjam')->with('success', 'Peminjaman Berhasil Dibatalkan');
+        return redirect()->back()->with('success', 'Peminjaman Berhasil Dibatalkan');
     }
 
     // PROSES KONFIRMASI PEMINJAMAN OLEH PETUGAS

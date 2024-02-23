@@ -98,6 +98,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                             <i>
                                                                             </i> Konfirmasi
                                                                         </a>
+                                                                        <button class="btn btn-xs btn-danger"
+                                                                            data-toggle="modal"
+                                                                            href="#modalHapus{{ $row->id }}">
+                                                                            Batalkan
+                                                                        </button>
                                                                     @elseif ($row->statuspeminjaman == 'Belum di Kembalikan')
                                                                         <a type="button"
                                                                             href="/kembalikan/{{ $row->id }}"
@@ -119,6 +124,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div>
                     </div>
                 </section>
+                @foreach ($data as $a)
+                    <div class="modal fade" id="modalHapus{{ $a->id }}" tabindex="-1" role="dialog"
+                        aria-hidden="true">
+                        <div class="modal-dialog ">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Batalkan Pinjaman</h5>
+                                    <button type="button" class="close"
+                                        data-dismiss="modal"><span>&times;</span></button>
+                                </div>
+                                <form method="GET" action="/pinjam/destroy/{{ $a->id }}">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label>Apakah Anda Yakin Membatalkan Peminjaman?</label>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-xs btn-secondary" data-dismiss="modal"><i
+                                                    class="fa fa-undo"></i> Close</button>
+                                            <button type="submit" class="btn btn-xs btn-danger">
+                                                Batalkan</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
 

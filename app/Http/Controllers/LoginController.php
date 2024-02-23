@@ -53,9 +53,14 @@ class LoginController extends Controller
             'password' => $request->password,
         ];
         if (Auth::attempt($infologin)) {
-            return redirect('/home');
-        } else {
-            return redirect('')->withErrors('username atau password salah')->withInput();
+
+            if (Auth::user()->role == 'admin' || Auth::user()->role == 'petugas') {
+                return redirect('home')->with('Login Berhasil', 'Selamat Datang');
+            } elseif (Auth::user()->role == 'peminjam') {
+                return redirect('dashboard');
+            } else {
+                return redirect('')->withErrors('username atau password salah')->withInput();
+            }
         }
         return view('/home');
     }

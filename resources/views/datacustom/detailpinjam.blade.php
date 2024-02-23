@@ -10,15 +10,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
     @include('template.head')
 </head>
 
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition layout-top-nav">
     <div class="wrapper">
 
         <!-- Navbar -->
-        @include('template.navbar')
+        @include('template.navbar-peminjam')
         <!-- /.navbar -->
 
-        <!-- Main Sidebar Container -->
-        @include('template.sidebar')
+        {{-- <!-- Main Sidebar Container -->
+        @include('template.sidebar') --}}
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -31,7 +31,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="home">Home</a></li>
+                                <li class="breadcrumb-item"><a href="dashboard">Dashboard</a></li>
                                 <li class="breadcrumb-item active">{{ $title }}</li>
                             </ol>
                         </div><!-- /.col -->

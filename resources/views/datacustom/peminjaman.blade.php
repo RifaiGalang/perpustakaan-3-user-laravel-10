@@ -10,15 +10,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
     @include('template.head')
 </head>
 
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition layout-top-nav">
     <div class="wrapper">
 
         <!-- Navbar -->
-        @include('template.navbar')
+        @include('template.navbar-peminjam')
         <!-- /.navbar -->
 
-        <!-- Main Sidebar Container -->
-        @include('template.sidebar')
+        {{-- <!-- Main Sidebar Container -->
+        @include('template.sidebar') --}}
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -31,7 +31,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="home">Home</a></li>
+                                <li class="breadcrumb-item"><a href="dashboard">Dashboard</a></li>
                                 <li class="breadcrumb-item active">{{ $title }}</li>
                             </ol>
                         </div><!-- /.col -->
@@ -119,7 +119,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 @foreach ($data as $d)
                     <div class="modal fade" id="modalShow{{ $d->id }}" tabindex="-1" role="dialog"
                         aria-hidden="true">
-                        <div class="modal-dialog ">
+                        <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title">Detail</h5>
@@ -132,15 +132,43 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="row justify-content-center">
-                                                    @if ($d->gambar)
-                                                        <div class="mb-5">
-                                                            <img src="{{ url('gambar') . '/' . $d->gambar }}"
-                                                                alt="" width="170px">
-                                                        </div>
-                                                    @endif
+                                                    <img src="{{ url('gambar') . '/' . $d->gambar }}" alt=""
+                                                        width="200px">
                                                 </div>
                                             </div>
-                                            <ul class="list-group list-group-unbordered ml-3">
+                                            <div class="col-md-7">
+                                                <table class="table text-nowarp">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Judul</th>
+                                                            <td>:</td>
+                                                            <td>{{ $d->judul }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Penulis</th>
+                                                            <td>:</td>
+                                                            <td>{{ $d->penulis }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Penerbit</th>
+                                                            <td>:</td>
+                                                            <td>{{ $d->penerbit->nama_penerbit }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Kategori</th>
+                                                            <td>:</td>
+                                                            <td>{{ $d->kategori->nama_kategori }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Stok</th>
+                                                            <td>:</td>
+                                                            <td>{{ $d->stok}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            {{-- <ul class="list-group list-group-unbordered ml-3">
                                                 <li class="list-group-item">
                                                     <b>Judul</b>
                                                     <label
@@ -159,17 +187,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 <li class="list-group-item">
                                                     <b>Penerbit</b>
                                                     <label
-                                                        class="badge badge-info float-right">{{ $d->penerbit }}</label>
+                                                        class="badge badge-info float-right">{{ $d->penerbit->nama_penerbit }}</label>
                                                 </li>
                                                 <li class="list-group-item">
                                                     <b>Tahun Terbit</b>
                                                     <label
                                                         class="badge badge-info float-right">{{ $d->tahun_terbit }}</label>
                                                 </li>
-                                            </ul>
+                                            </ul> --}}
 
                                         </div>
-                                        <div class="text-center">
+                                        <div class="modal-footer mt-3">
                                             <a type="button" href="/koleksi/tambah/{{ $d->id }}"
                                                 class="btn btn-primary">
                                                 <i class="fa fa-plus"></i> Koleksi
