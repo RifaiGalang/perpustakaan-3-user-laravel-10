@@ -27,12 +27,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="card-title">{{$title}}</h1>
+                            <h1 class="card-title">{{ $title }}</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="home">Home</a></li>
-                                <li class="breadcrumb-item active">{{$title}}</li>
+                                <li class="breadcrumb-item active">{{ $title }}</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -92,10 +92,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <!-- /.card-header -->
                                         <div class="card-body">
                                             @if ($message = Session::get('success'))
-                                            <div class="alert alert-info">
-                                              <button type="button" class="close" data-dismiss="alert">×</button>	
-                                                <strong>{{ $message }}</strong>
-                                            </div>
+                                                <div class="alert alert-info">
+                                                    <button type="button" class="close"
+                                                        data-dismiss="alert">×</button>
+                                                    <strong>{{ $message }}</strong>
+                                                </div>
                                             @endif
                                             <table id="example1" class="table table-bordered table-striped">
                                                 <thead>
@@ -179,32 +180,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 @endforeach
                 {{-- form modal hapus --}}
                 @foreach ($data_namakategori as $c)
-                <div class="modal fade" id="modalHapus{{ $c->id }}" tabindex="-1" role="dialog"
-                    aria-hidden="true">
-                    <div class="modal-dialog ">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Hapus Data User</h5>
-                                <button type="button" class="close"
-                                    data-dismiss="modal"><span>&times;</span></button>
-                            </div>
-                            <form method="GET" action="/nama-kategori/destroy/{{ $c->id }}">
-                                @csrf
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label>Apakah Anda ingin Menghapus Data Ini?</label>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
-                                                class="fa fa-undo"></i>Close</button>
-                                        <button type="submit" class="btn btn-danger"><i
-                                                class="fa fa-trash"></i>Hapus</button>
-                                    </div>
+                    <div class="modal fade" id="modalHapus{{ $c->id }}" tabindex="-1" role="dialog"
+                        aria-hidden="true">
+                        <div class="modal-dialog ">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Hapus Data User</h5>
+                                    <button type="button" class="close"
+                                        data-dismiss="modal"><span>&times;</span></button>
                                 </div>
-                            </form>
+                                <form method="GET" action="/nama-kategori/destroy/{{ $c->id }}">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label>Apakah Anda ingin Menghapus Data Ini?</label>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
+                                                    class="fa fa-undo"></i>Close</button>
+                                            <button type="submit" class="btn btn-danger"><i
+                                                    class="fa fa-trash"></i>Hapus</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
             </div>
         </div>

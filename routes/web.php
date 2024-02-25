@@ -25,8 +25,9 @@ use Illuminate\Support\Facades\Route;
 //     return view('/login');
 // });
 
+Route::get('/', [HomeController::class, 'guest'])->name('modetamu');
 //LOGIN
-route::get('/', [LoginController::class, 'index']);
+// route::get('/', [LoginController::class, 'index']);
 route::get('/registrasi', [LoginController::class, 'registrasi'])->name('registrasi');
 route::post('/simpanregistrasi', [LoginController::class, 'simpanregistrasi'])->name('simpanregistrasi');
 route::get('/login', [LoginController::class, 'index'])->name('login');
@@ -35,13 +36,12 @@ route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 //HOME BERDASARKAN SETELAH LOGIN 
 Route::middleware(['auth'])->group(function () {
-    
 });
 
 //CRUD MASTER DATA OLEH ADMIN & PETUGAS
 Route::middleware(['auth', 'checkrole:admin,petugas'])->group(function () {
-// HALAMAN HOME 
-route::get('/home', [HomeController::class, 'index'])->name('home');
+    // HALAMAN HOME 
+    route::get('/home', [HomeController::class, 'index'])->name('home');
     route::get('/data-user', [UserController::class, 'index'])->name('data-user');
     route::post('/data-user/tambah', [UserController::class, 'tambahuser']);
     route::post('/data-user/update/{id}', [UserController::class, 'update']);
@@ -61,10 +61,9 @@ route::get('/home', [HomeController::class, 'index'])->name('home');
     route::post('/nama-penerbit/tambah', [PenerbitController::class, 'tambahnamapenerbit']);
     route::post('/nama-penerbit/update/{id}', [PenerbitController::class, 'update']);
     route::get('/nama-penerbit/destroy/{id}', [PenerbitController::class, 'destroy']);
-// MELIHAT ULASAN
+    // MELIHAT ULASAN
     route::get('/ulasanview', [PeminjamanController::class, 'ulasanview'])->name('ulasanview');
 });
-
 
 //KONFIRMASI PEMINJAMAN OLEH PETUGAS
 Route::middleware(['auth', 'checkrole:petugas'])->group(function () {

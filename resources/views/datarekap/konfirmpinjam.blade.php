@@ -74,7 +74,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         $no = 1;
                                                     @endphp
                                                     @foreach ($data as $row)
-                                                        @if ($row->statuspeminjaman == 'Menunggu Konfirmasi'|| $row->statuspeminjaman == 'Belum di Kembalikan')
+                                                        @if ($row->statuspeminjaman == 'Menunggu Konfirmasi' || $row->statuspeminjaman == 'Belum di Kembalikan')
                                                             <tr>
                                                                 <td>{{ $no++ }}</td>
                                                                 <td>{{ $row->user->nama_lengkap }}</td>
@@ -141,8 +141,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <label>Apakah Anda Yakin Membatalkan Peminjaman?</label>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-xs btn-secondary" data-dismiss="modal"><i
-                                                    class="fa fa-undo"></i> Close</button>
+                                            <button type="button" class="btn btn-xs btn-secondary"
+                                                data-dismiss="modal"><i class="fa fa-undo"></i> Close</button>
                                             <button type="submit" class="btn btn-xs btn-danger">
                                                 Batalkan</button>
                                         </div>

@@ -15,15 +15,15 @@ class BukuController extends Controller
     // DATA BUKU ALL
     public function index()
     {
-        $data=Buku::all();
+        $data = Buku::all();
 
         return view('datamaster.buku', [
-            'title'=>'Data Buku',
+            'title' => 'Data Buku',
             'kategori' => Kategori::all(),
             'penerbit' => Penerbit::all(),
             'buku' => Buku::all(),
             'ulasan' => Ulasan::all(),
-            'data'=>$data,
+            'data' => $data,
         ]);
     }
     // CREATE BUKU
@@ -57,7 +57,7 @@ class BukuController extends Controller
             'penulis' => $request->penulis,
             'id_penerbit' => $request->id_penerbit,
             'tahun_terbit' => $request->tahun_terbit,
-            'stok'=>$request->stok,
+            'stok' => $request->stok,
 
         ]);
         if ($request->hasFile('gambar')) {
@@ -69,7 +69,7 @@ class BukuController extends Controller
             $data_buku['gambar'] = $gambar_nama;
         }
         Buku::create($data_buku);
-        return redirect('data-buku')->with('success','Buku Berhasil Ditambah');
+        return redirect('data-buku')->with('success', 'Buku Berhasil Ditambah');
     }
 
     // UPDATE BUKU
@@ -82,7 +82,7 @@ class BukuController extends Controller
             'penulis' => $request->penulis,
             'id_penerbit' => $request->id_penerbit,
             'tahun_terbit' => $request->tahun_terbit,
-            'stok'=> $request->stok,
+            'stok' => $request->stok,
 
         ]);
         if ($request->hasFile('gambar')) {
@@ -91,20 +91,21 @@ class BukuController extends Controller
             $gambar_nama = $gambar_file->hashName();
             $gambar_file->move(public_path('gambar'), $gambar_nama);
 
-            $data_buku = Buku:: where('id',$id)->first();
-            File:: delete(public_path('gambar').'/'. $data_buku->gambar);
+            $data_buku = Buku::where('id', $id)->first();
+            File::delete(public_path('gambar') . '/' . $data_buku->gambar);
             $data_edit['gambar'] = $gambar_nama;
         }
-        Buku:: where('id',$id)->update($data_edit);
-        return redirect('data-buku')->with('success','Buku Berhasil Diubah');
+        Buku::where('id', $id)->update($data_edit);
+        return redirect('data-buku')->with('success', 'Buku Berhasil Diubah');
     }
 
     // DELETE BUKU
-    public function destroy($id){
-        $data_delete = Buku:: where('id',$id)->first();
-        File:: delete(public_path('gambar').'/'. $data_delete->gambar);
-        Buku:: where('id',$id)->delete();
+    public function destroy($id)
+    {
+        $data_delete = Buku::where('id', $id)->first();
+        File::delete(public_path('gambar') . '/' . $data_delete->gambar);
+        Buku::where('id', $id)->delete();
 
-        return redirect('data-buku')->with('success','Buku Berhasil Dihapus');
+        return redirect('data-buku')->with('success', 'Buku Berhasil Dihapus');
     }
 }

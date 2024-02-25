@@ -162,40 +162,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         <tr>
                                                             <th>Stok</th>
                                                             <td>:</td>
-                                                            <td>{{ $d->stok}}</td>
+                                                            <td>{{ $d->stok }}</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
-
-                                            {{-- <ul class="list-group list-group-unbordered ml-3">
-                                                <li class="list-group-item">
-                                                    <b>Judul</b>
-                                                    <label
-                                                        class="badge badge-info float-right">{{ $d->judul }}</label>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <b>Kategori</b>
-                                                    <label
-                                                        class="badge badge-info float-right">{{ $d->kategori->nama_kategori }}</label>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <b>Penulis</b>
-                                                    <label
-                                                        class="badge badge-info float-right">{{ $d->penulis }}</label>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <b>Penerbit</b>
-                                                    <label
-                                                        class="badge badge-info float-right">{{ $d->penerbit->nama_penerbit }}</label>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <b>Tahun Terbit</b>
-                                                    <label
-                                                        class="badge badge-info float-right">{{ $d->tahun_terbit }}</label>
-                                                </li>
-                                            </ul> --}}
-
                                         </div>
                                         <div class="modal-footer mt-3">
                                             <a type="button" href="/koleksi/tambah/{{ $d->id }}"

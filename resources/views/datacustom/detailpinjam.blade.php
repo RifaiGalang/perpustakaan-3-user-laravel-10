@@ -126,8 +126,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <label>Apakah Anda Yakin Membatalkan Peminjaman?</label>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-xs btn-secondary" data-dismiss="modal"><i
-                                                    class="fa fa-undo"></i> Close</button>
+                                            <button type="button" class="btn btn-xs btn-secondary"
+                                                data-dismiss="modal"><i class="fa fa-undo"></i> Close</button>
                                             <button type="submit" class="btn btn-xs btn-danger">
                                                 Batalkan</button>
                                         </div>

@@ -27,11 +27,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">{{$title}}</h1>
+                            <h1 class="m-0">{{ $title }}</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="home">{{$title}}</a></li>
+                                <li class="breadcrumb-item"><a href="home">{{ $title }}</a></li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -40,31 +40,73 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- /.content-header -->
 
             <!-- Main content -->
-            <div class="container-fluid">
+
+            <div class="col-12">
                 <div class="row">
-                    <div class="col-12">
-                     <div class="card">
-                       <div class="card-body">
-                        <h1 class="text-center">Selamat Datang {{ auth()->user()->username }}</h1>
-                       </div>
+
+                    <div class="col-md-4">
+                        <div class="card card-danger">
+                            <div class="card-header">
+                                <h3 class="card-title">Total Peminjaman</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="info-box mb-1">
+                                    <span class="info-box-icon bg-danger"><i class="fas fa-list"></i></span>
+                                    <div class="info-box-content">
+                                        <h3 class="info-box-number">{{ $peminjaman }}</h3>
+                                        <p class="info-box-text">Peminjaman</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <a href="detailpinjam" class="small-box-footer">More info
+                                    <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
                     </div>
+                    <div class="col-md-4">
+                        <div class="card card-warning">
+                            <div class="card-header">
+                                <h3 class="card-title text-white">Total Buku</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="info-box mb-1">
+                                    <span class="info-box-icon bg-warning"><i class="fas fa-book text-white"></i></span>
+                                    <div class="info-box-content">
+                                        <h3 class="info-box-number">{{ $buku }}</h3>
+                                        <p class="info-box-text">Buku</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <a href="pinjam" class="small-box-footer">More info
+                                    <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
                     </div>
+                    <div class="col-md-4">
+                        <div class="card card-success">
+                            <div class="card-header">
+                                <h3 class="card-title text-white">Total Koleksi</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="info-box mb-1">
+                                    <span class="info-box-icon bg-success"><i class="fa-solid fa-thumbtack"></i></span>
+                                    <div class="info-box-content">
+                                        <h3 class="info-box-number">{{ $koleksi }}</h3>
+                                        <p class="info-box-text">Koleksi</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <a href="koleksi-pribadi" class="small-box-footer">More info
+                                    <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-
-
-            <div class="col-lg-3 col-6">
-               <div class="small-box bg-info">
-                   <div class="inner">
-                       <h3>user</h3>
-                       <p>User</p>
-                   </div>
-                   <div class="icon">
-                       <i class="nav-icon fas fa-solid fa-user"></i>
-                   </div>
-                   <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-               </div>
-           </div>
 
             <!-- /.content -->
         </div>

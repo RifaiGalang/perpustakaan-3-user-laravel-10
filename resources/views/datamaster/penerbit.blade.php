@@ -169,8 +169,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
                                                     class="fa fa-undo"></i> Close</button>
-                                            <button type="submit" class="btn btn-primary"><i
-                                                    class="fa fa-save"></i> Save changes</button>
+                                            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>
+                                                Save changes</button>
                                         </div>
                                     </div>
                                 </form>
@@ -198,8 +198,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
                                                     class="fa fa-undo"></i> Close</button>
-                                            <button type="submit" class="btn btn-danger"><i
-                                                    class="fa fa-trash"></i> Hapus</button>
+                                            <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i>
+                                                Hapus</button>
                                         </div>
                                     </div>
                                 </form>

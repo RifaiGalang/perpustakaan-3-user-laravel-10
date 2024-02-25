@@ -25,14 +25,14 @@ class UserController extends Controller
 
         User::create([
             'username' => $request->username,
-            'email' => $request->email, 
+            'email' => $request->email,
             'password' => bcrypt($request->password),
             'role' => $request->role,
             'nama_lengkap' => $request->nama_lengkap,
             'alamat' => $request->alamat,
             'remember_token' => Str::random(60),
         ]);
-        return redirect('data-user')->with('success','Data Berhasil Disimpan');
+        return redirect('data-user')->with('success', 'Data Berhasil Disimpan');
     }
 
     //UPDATE USER
@@ -49,13 +49,13 @@ class UserController extends Controller
                 'alamat' => $request->alamat,
                 'remember_token' => Str::random(60),
             ]);
-        return redirect('data-user')->with('success','Data Berhasil Diubah');
+        return redirect('data-user')->with('success', 'Data Berhasil Diubah');
     }
 
     // DELETE USER
     public function destroy($id)
     {
-         User::where('id', $id)->delete();
-        return redirect('data-user')->with('success','Data Berhasil Dihapus');
+        User::where('id', $id)->delete();
+        return redirect('data-user')->with('success', 'Data Berhasil Dihapus');
     }
 }

@@ -70,7 +70,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                  </div>
                              </div>
                              <div class="card-footer">
-                                 <a href="#" class="small-box-footer">More info
+                                 <a href="data-user" class="small-box-footer">More info
                                      <i class="fas fa-arrow-circle-right"></i></a>
                              </div>
                          </div>
@@ -91,7 +91,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                  </div>
                              </div>
                              <div class="card-footer">
-                                 <a href="#" class="small-box-footer">More info
+                                 <a href="data-buku" class="small-box-footer">More info
                                      <i class="fas fa-arrow-circle-right"></i></a>
                              </div>
                          </div>
@@ -103,7 +103,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                              </div>
                              <div class="card-body">
                                  <div class="info-box mb-1">
-                                     <span class="info-box-icon bg-info"><i
+                                     <span class="info-box-icon bg-success"><i
                                              class="fa-solid fa-building-circle-arrow-right"></i></span>
                                      <div class="info-box-content">
                                          <h3 class="info-box-number">{{ $penerbit }}</h3>
@@ -112,7 +112,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                  </div>
                              </div>
                              <div class="card-footer">
-                                 <a href="#" class="small-box-footer">More info
+                                 <a href="nama-penerbit" class="small-box-footer">More info
                                      <i class="fas fa-arrow-circle-right"></i></a>
                              </div>
                          </div>
@@ -125,7 +125,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                  </div>
                                  <div class="card-body">
                                      <div class="info-box mb-1">
-                                         <span class="info-box-icon bg-info"><i class="fas fa-user"></i></span>
+                                         <span class="info-box-icon bg-danger"><i
+                                                 class="fa-solid fa-paperclip"></i></span>
                                          <div class="info-box-content">
                                              <h3 class="info-box-number">{{ $peminjaman }}</h3>
                                              <p class="info-box-text">Peminjaman</p>
@@ -133,7 +134,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                      </div>
                                  </div>
                                  <div class="card-footer">
-                                     <a href="#" class="small-box-footer">More info
+                                     <a href="alldatapinjam" class="small-box-footer">More info
                                          <i class="fas fa-arrow-circle-right"></i></a>
                                  </div>
                              </div>
@@ -147,15 +148,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                  </div>
                                  <div class="card-body">
                                      <div class="info-box mb-1">
-                                         <span class="info-box-icon bg-info"><i class="fas fa-user"></i></span>
+                                         <span class="info-box-icon bg-danger"><i class="fas fa-list"></i></span>
                                          <div class="info-box-content">
-                                             <h3 class="info-box-number">{{ $statuspeminjaman}}</h3>
+                                             <h3 class="info-box-number">{{ $statuspeminjaman }}</h3>
                                              <p class="info-box-text">Konfirmasi</p>
                                          </div>
                                      </div>
                                  </div>
                                  <div class="card-footer">
-                                     <a href="#" class="small-box-footer">More info
+                                     <a href="konfirmasi-pinjam" class="small-box-footer">More info
                                          <i class="fas fa-arrow-circle-right"></i></a>
                                  </div>
                              </div>

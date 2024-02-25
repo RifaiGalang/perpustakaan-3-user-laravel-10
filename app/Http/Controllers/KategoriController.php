@@ -20,12 +20,13 @@ class KategoriController extends Controller
     }
 
     // CREATE KATEGORI
-    public function tambahnamakategori(Request $request){
-        
+    public function tambahnamakategori(Request $request)
+    {
+
         Kategori::create([
-            'nama_kategori'=>$request->nama_kategori,
+            'nama_kategori' => $request->nama_kategori,
         ]);
-        return redirect('nama-kategori')->with('success','Nama Kategori Berhasil Ditambah');
+        return redirect('nama-kategori')->with('success', 'Nama Kategori Berhasil Ditambah');
     }
 
     // UPDATE KATEGORI
@@ -36,13 +37,13 @@ class KategoriController extends Controller
             ->update([
                 'nama_kategori' => $request->nama_kategori,
             ]);
-        return redirect('nama-kategori')->with('success','Nama Kategori Berhasil Diubah');
+        return redirect('nama-kategori')->with('success', 'Nama Kategori Berhasil Diubah');
     }
 
     // DELETE KATEGORI
     public function destroy($id)
     {
-         Kategori::where('id', $id)->delete();
-        return redirect('nama-kategori')->with('success','Nama Kategori Berhasil Dihapus');
+        Kategori::where('id', $id)->delete();
+        return redirect('nama-kategori')->with('success', 'Nama Kategori Berhasil Dihapus');
     }
 }

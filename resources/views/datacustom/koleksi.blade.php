@@ -53,7 +53,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <div class="card-content mb-2">
                         <div class="row">
                             @foreach ($data as $a)
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="card mb-4 shadow" style="cursor: pointer">
                                         <div class="container mt-2">
 
@@ -78,8 +78,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 class="btn btn-primary">
                                                 <i></i>Pinjam
                                             </a>
-
-
                                         </div>
                                     </div>
                                 </div>
@@ -94,7 +92,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 @foreach ($data as $b)
                     <div class="modal fade" id="modalShow{{ $b->id }}" tabindex="-1" role="dialog"
                         aria-hidden="true">
-                        <div class="modal-dialog ">
+                        <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title">Detail</h5>
@@ -107,44 +105,41 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="row justify-content-center">
-                                                    @if ($b->buku->gambar)
-                                                        <div class="mb-5">
-                                                            <img src="{{ url('gambar') . '/' . $b->buku->gambar }}"
-                                                                alt="" width="170px">
-                                                        </div>
-                                                    @endif
+                                                    <img src="{{ url('gambar') . '/' . $b->buku->gambar }}"
+                                                        alt="" width="200px">
                                                 </div>
                                             </div>
-
-
-                                            <ul class="list-group list-group-unbordered ml-3">
-                                                <li class="list-group-item">
-                                                    <b>Judul</b>
-                                                    <label
-                                                        class="badge badge-info float-right">{{ $b->buku->judul }}</label>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <b>Kategori</b>
-                                                    <label
-                                                        class="badge badge-info float-right">{{ $b->buku->kategori->nama_kategori }}</label>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <b>Penulis</b>
-                                                    <label
-                                                        class="badge badge-info float-right">{{ $b->buku->penulis }}</label>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <b>Penerbit</b>
-                                                    <label
-                                                        class="badge badge-info float-right">{{ $b->buku->penerbit }}</label>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <b>Tahun Terbit</b>
-                                                    <label
-                                                        class="badge badge-info float-right">{{ $b->buku->tahun_terbit }}</label>
-                                                </li>
-                                            </ul>
-
+                                            <div class="col-md-7">
+                                                <table class="table text-nowarp">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Judul</th>
+                                                            <td>:</td>
+                                                            <td>{{ $b->buku->judul }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Penulis</th>
+                                                            <td>:</td>
+                                                            <td>{{ $b->buku->penulis }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Penerbit</th>
+                                                            <td>:</td>
+                                                            <td>{{ $b->buku->penerbit->nama_penerbit }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Kategori</th>
+                                                            <td>:</td>
+                                                            <td>{{ $b->buku->kategori->nama_kategori }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Stok</th>
+                                                            <td>:</td>
+                                                            <td>{{ $b->buku->stok }}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

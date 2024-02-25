@@ -71,21 +71,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                             <td>{{ $row->user->nama_lengkap }}</td>
                                                             <td>{{ $row->buku->judul }}</td>
                                                             <td>
-                                                               @if ( $row->rating=='5')
-                                                            <span>⭐⭐⭐⭐⭐</span></td>
-                                                               @elseif ( $row->rating=='4')
-                                                            <span>⭐⭐⭐⭐</span></td>
-                                                               @elseif ( $row->rating=='3')
-                                                            <span>⭐⭐⭐</span></td>
-                                                               @elseif ( $row->rating=='2')
-                                                            <span>⭐⭐</span></td>
-                                                               @elseif ( $row->rating=='1')
-                                                            <span>⭐</span></td>
-                                                            @endif
-                                                            <td>{{ $row->ulasan }}</td>
-                                                          
+                                                                @if ($row->rating == '5')
+                                                                    <span>⭐⭐⭐⭐⭐</span>
                                                             </td>
-                                                        </tr>
+                                                        @elseif ($row->rating == '4')
+                                                            <span>⭐⭐⭐⭐</span></td>
+                                                        @elseif ($row->rating == '3')
+                                                            <span>⭐⭐⭐</span></td>
+                                                        @elseif ($row->rating == '2')
+                                                            <span>⭐⭐</span></td>
+                                                        @elseif ($row->rating == '1')
+                                                            <span>⭐</span></td>
+                                                    @endif
+                                                    <td>{{ $row->ulasan }}</td>
+
+                                                    </td>
+                                                    </tr>
                                                     @endforeach
                                                 </tbody>
                                             </table>
