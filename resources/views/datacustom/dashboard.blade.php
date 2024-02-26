@@ -16,10 +16,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Navbar -->
         @include('template.navbar-peminjam')
         <!-- /.navbar -->
-
-        <!-- Main Sidebar Container -->
-        {{-- @include('template.sidebar') --}}
-
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -40,7 +36,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- /.content-header -->
 
             <!-- Main content -->
-
             <div class="col-12">
                 <div class="row">
 
@@ -107,7 +102,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                 </div>
             </div>
-
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->

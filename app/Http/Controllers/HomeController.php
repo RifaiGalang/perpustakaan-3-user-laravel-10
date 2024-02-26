@@ -52,6 +52,7 @@ class HomeController extends Controller
         }
     }
 
+    // HALAMAN TAMU
     public function guest()
     {
         $data = Buku::all();

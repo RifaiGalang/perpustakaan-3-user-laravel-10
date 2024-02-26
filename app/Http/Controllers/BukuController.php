@@ -26,6 +26,7 @@ class BukuController extends Controller
             'data' => $data,
         ]);
     }
+    
     // CREATE BUKU
     public function tambahbuku(Request $request)
     {

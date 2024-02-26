@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notifiable;
 
 class Penerbit extends Model
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
     protected $table = 'penerbit';
     protected $primaryKey = 'id';
     protected $fillable = [
@@ -20,7 +20,9 @@ class Penerbit extends Model
      {
          return $this->hasMany(Buku::class);
      }
-
+     public function koleksi(){
+        return $this->hasMany(Koleksi::class);
+    }
      
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';

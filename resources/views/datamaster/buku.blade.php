@@ -34,12 +34,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <li class="breadcrumb-item"><a href="home">Home</a></li>
                                 <li class="breadcrumb-item active">{{ $title }}</li>
                             </ol>
-                        </div><!-- /.col -->
-                    </div><!-- /.row -->
-                </div><!-- /.container-fluid -->
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- /.content-header -->
-
 
             <!-- Main content -->
             <div class="content">
@@ -210,7 +209,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </div>
                 </section>
 
-
                 {{-- form modal update --}}
                 @foreach ($buku as $d)
                     <div class="modal fade" id="modalupdate{{ $d->id }}" tabindex="-1" role="dialog"
@@ -233,13 +231,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         </div>
                                         <div class="form-group">
                                             <label>Kategori</label>
-                                            <select class="form-control" name="id_kategori" required>
-                                                <option selected value="{{ $d->id }}">
-                                                    {{ $d->kategori->nama_kategori }}
+                                            <select value="id_kategori" class="form-control" name="id_kategori">
+                                                <option value="{{ $d->id }}">Pilih kategori
                                                 </option>
                                                 @foreach ($kategori as $b)
-                                                    <option value="{{ $b->id }}">
-                                                        {{ $b->nama_kategori }}</option>
+                                                    <option value="{{ $b->id }}"
+                                                        {{ $b->id == $d->id_kategori ? 'selected' : '' }}>
+                                                        {{ $b->nama_kategori }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -250,13 +249,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         </div>
                                         <div class="form-group">
                                             <label>Penerbit</label>
-                                            <select class="form-control" name="id_penerbit" required>
-                                                <option selected value="{{ $d->id }}">
-                                                    {{ $d->penerbit->nama_penerbit }}
+                                            <select value="id_penerbit" class="form-control" name="id_penerbit">
+                                                <option value="{{ $d->id }}">Pilih penerbit
                                                 </option>
-                                                @foreach ($penerbit as $b)
-                                                    <option value="{{ $b->id }}">
-                                                        {{ $b->nama_penerbit }}</option>
+                                                @foreach ($penerbit as $e)
+                                                    <option value="{{ $e->id }}"
+                                                        {{ $e->id == $d->id_penerbit ? 'selected' : '' }}>
+                                                        {{ $e->nama_penerbit }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                         </div>

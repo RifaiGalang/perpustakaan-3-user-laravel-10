@@ -34,12 +34,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                  <li class="breadcrumb-item"><a href="home">Home</a></li>
                                  <li class="breadcrumb-item active">{{ $title }}</li>
                              </ol>
-                         </div><!-- /.col -->
-                     </div><!-- /.row -->
-                 </div><!-- /.container-fluid -->
+                         </div>
+                     </div>
+                 </div>
              </div>
              <!-- /.content-header -->
-
 
              <!-- Main content -->
              <div class="content">
@@ -179,7 +178,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                      </div>
                  </section>
 
-
                  {{-- form modal update --}}
                  @foreach ($data_user as $d)
                      <div class="modal fade" id="modalupdate{{ $d->id }}" tabindex="-1" role="dialog"
@@ -244,6 +242,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                          </div>
                      </div>
                  @endforeach
+
                  {{--  form modal hapus user --}}
                  @foreach ($data_user as $c)
                      <div class="modal fade" id="modalHapus{{ $c->id }}" tabindex="-1" role="dialog"

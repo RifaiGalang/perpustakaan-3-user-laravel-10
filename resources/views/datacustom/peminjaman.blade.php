@@ -17,9 +17,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
         @include('template.navbar-peminjam')
         <!-- /.navbar -->
 
-        {{-- <!-- Main Sidebar Container -->
-        @include('template.sidebar') --}}
-
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -34,12 +31,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <li class="breadcrumb-item"><a href="dashboard">Dashboard</a></li>
                                 <li class="breadcrumb-item active">{{ $title }}</li>
                             </ol>
-                        </div><!-- /.col -->
-                    </div><!-- /.row -->
-                </div><!-- /.container-fluid -->
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- /.content-header -->
-
 
             <!-- Main content -->
             <div class="content">

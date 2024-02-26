@@ -34,7 +34,7 @@ class PenerbitController extends Controller
 
         Penerbit::where('id', $id)
             ->update([
-                'nama_penerbit' => $request->nama_kategori,
+                'nama_penerbit' => $request->nama_penerbit,
             ]);
         return redirect('nama-penerbit')->with('success', 'Nama Penerbit Berhasil Diubah');
     }

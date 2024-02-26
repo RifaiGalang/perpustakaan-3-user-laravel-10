@@ -34,12 +34,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <li class="breadcrumb-item"><a href="home">Home</a></li>
                                 <li class="breadcrumb-item active">{{ $title }}</li>
                             </ol>
-                        </div><!-- /.col -->
-                    </div><!-- /.row -->
-                </div><!-- /.container-fluid -->
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- /.content-header -->
-
 
             <!-- Main content -->
             <div class="content">
@@ -57,6 +56,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 Tambah Data
                                             </button>
                                         </div>
+                                        
                                         {{-- form modal create --}}
                                         <div class="modal fade" id="modalCreate" tabindex="-1" role="dialog"
                                             aria-hidden="true">
@@ -130,21 +130,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <!-- /.card-body -->
                                     </div>
-                                    <!-- /.card -->
                                 </div>
-                                <!-- /.col -->
                             </div>
-                            <!-- /.row -->
                         </div>
                         <!-- /.container-fluid -->
                     </div>
                 </section>
-
-
-
-
 
                 {{-- form modal update --}}
                 @foreach ($data_namapenerbit as $d)
@@ -153,7 +145,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="modal-dialog ">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Edit Nama Kategori</h5>
+                                    <h5 class="modal-title">Edit Nama Penerbit</h5>
                                     <button type="button" class="close"
                                         data-dismiss="modal"><span>&times;</span></button>
                                 </div>
@@ -178,6 +170,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div>
                     </div>
                 @endforeach
+
                 {{-- form modal hapus --}}
                 @foreach ($data_namapenerbit as $c)
                     <div class="modal fade" id="modalHapus{{ $c->id }}" tabindex="-1" role="dialog"
@@ -185,7 +178,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="modal-dialog ">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Hapus Data User</h5>
+                                    <h5 class="modal-title">Hapus Penerbit</h5>
                                     <button type="button" class="close"
                                         data-dismiss="modal"><span>&times;</span></button>
                                 </div>

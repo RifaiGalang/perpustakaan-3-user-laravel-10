@@ -17,9 +17,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
         @include('template.navbar-tamu')
         <!-- /.navbar -->
 
-        <!-- Main Sidebar Container -->
-        {{-- @include('template.sidebar') --}}
-
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->

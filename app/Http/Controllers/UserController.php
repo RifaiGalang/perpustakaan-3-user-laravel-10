@@ -35,7 +35,7 @@ class UserController extends Controller
         return redirect('data-user')->with('success', 'Data Berhasil Disimpan');
     }
 
-    //UPDATE USER
+    // UPDATE USER
     public function update(Request $request, $id)
     {
 

@@ -112,33 +112,28 @@ class PeminjamanController extends Controller
 
         // Periksa ketersediaan stok buku sesuai ID buku yang dipilih
         $buku = Buku::find($id);
-        // Tidak Boleh Lebih 5 peminjaman
-        if ($historypinjam->count() == 6) {
-            return redirect()->back()->with('errors', 'Buku Yang di Pinjam Melebihi Batas Maksimal 5');
+        // Periksa jika  stok habis
+        if (!$buku || $buku->stok == 0) {
+            return redirect()->back()->with('errors', 'Buku Tidak Tersedia atau Stok Habis');
         } else {
-            // Periksa jika  stok habis
-            if (!$buku || $buku->stok == 0) {
-                return redirect()->back()->with('errors', 'Buku Tidak Tersedia atau Stok Habis');
+            // Periksa jika buku sama dengan buku yang akan dipinjam
+            if ($historypinjam->count() > 0) {
+                return redirect()->back()->with('errors', 'Anda Telah Meminjam Buku Ini atau Pilih Buku LAIN... ');
             } else {
-                // Periksa jika buku sama dengan buku yang akan dipinjam
-                if ($historypinjam->count() > 0) {
-                    return redirect()->back()->with('errors', 'Anda Telah Meminjam Buku Ini atau Pilih Buku LAIN... ');
-                } else {
-                    $data_pinjam = ([
-                        // 'kode_pinjam' => random_int(10000000, 999999999),
-                        'id_user' => auth()->user()->id,
-                        'id_buku' => $id,
-                        'tgl_pinjam' => now(),
-                        'statuspeminjaman' => 'Menunggu Konfirmasi',
+                $data_pinjam = ([
+                    // 'kode_pinjam' => random_int(10000000, 999999999),
+                    'id_user' => auth()->user()->id,
+                    'id_buku' => $id,
+                    'tgl_pinjam' => now(),
+                    'statuspeminjaman' => 'Menunggu Konfirmasi',
 
-                    ]);
-                    // Mengurangi Stok buku yang di pinjam
-                    $buku->update([
-                        'stok' => $buku->stok - 1
-                    ]);
-                    Peminjaman::create($data_pinjam);
-                    return redirect('detailpinjam')->with('success', 'Silahkan konfirmasi ke petugas');
-                }
+                ]);
+                // Mengurangi Stok buku yang di pinjam
+                $buku->update([
+                    'stok' => $buku->stok - 1
+                ]);
+                Peminjaman::create($data_pinjam);
+                return redirect('detailpinjam')->with('success', 'Silahkan konfirmasi ke petugas');
             }
         }
     }
