@@ -34,7 +34,7 @@ class BukuController extends Controller
                 'judul' => 'required',
                 'id_kategori' => 'required',
                 'penulis' => 'required',
-                'penerbit' => 'required',
+                'id_penerbit' => 'required',
                 'tahun_terbit' => 'required',
                 'stok' => 'required',
                 'gambar' => 'required|image|mimes:png,jpg,jpeg,svg|max:2048',
@@ -44,7 +44,7 @@ class BukuController extends Controller
                 'judul.required' => 'wajib diisi',
                 'id_kategori.required' => 'wajib diisi',
                 'penulis.required' => 'wajib diisi',
-                'penerbit.required' => 'wajib diisi',
+                'id_penerbit.required' => 'wajib diisi',
                 'tahun_terbit.required' => 'wajib diisi',
                 'stok.required' => 'wajib diisi',
 

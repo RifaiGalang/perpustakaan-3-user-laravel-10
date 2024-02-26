@@ -198,8 +198,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <div class="modal-body">
                                         <div class="form-group">
                                             <label>Berikan Ulasan</label>
-                                            <input type="text" class="form-control" name="ulasan"
-                                                placeholder="Berikan Ulasan ..." required>
+                                            <textarea type="text" class="form-control" name="ulasan"
+                                                placeholder="Berikan Ulasan ..." required></textarea>
                                         </div>
                                         <div class="form-group">
                                             <label>Rating</label>

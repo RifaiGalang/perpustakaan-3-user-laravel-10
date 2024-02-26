@@ -61,19 +61,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             @endif
                                             <form method="GET" action="/filter">
                                                 <div class="row pb-2">
-                                                    <div class="row g-5 align-items-center ml-1">
-                                                        <div class="col-3 pt-2">
+                                                    <div class="row g-5 align-items-center ">
+                                                        <div class="col-4 pt-2">
                                                             <label>Tanggal Awal :</label>
                                                             <input type="date" name="start_date"
                                                                 class="form-control ">
                                                         </div>
-                                                        <div class="col-3 pt-2">
+                                                        <div class="col-4 pt-2">
                                                             <label>Tanggal Akhir :</label>
                                                             <input type="date" name="end_date" class="form-control">
                                                         </div>
-                                                        <div class="col-5 pt-5">
+                                                        <div class="col-6 pt-2">
                                                             <button type="submit"
-                                                                class="btn btn-secondary">Filter</button>
+                                                                class="btn btn-success">Filter</button>
 
                                                             <a type="submit" href="/alldatapinjam"
                                                                 class="btn btn-primary">

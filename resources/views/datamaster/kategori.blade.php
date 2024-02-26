@@ -6,7 +6,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <html lang="en">
 
 <head>
-    <title>Perpustakaan | Kategori-name</title>
+    <title>Perpustakaan | Kategori</title>
     @include('template.head')
 </head>
 

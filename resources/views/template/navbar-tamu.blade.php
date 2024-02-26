@@ -2,6 +2,11 @@
  <nav class="main-header navbar navbar-expand-md navbar-dark bg-gradient-primary">
      <div class="container">
 
+         <!-- Brand/logo -->
+         <span class="navbar-brand">
+             Perpustakaan
+         </span>
+
          <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse"
              aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
              <span class="navbar-toggler-icon"></span>

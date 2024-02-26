@@ -13,7 +13,6 @@ class Kategori extends Model
     protected $table = 'kategoribuku';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'id',
         'nama_kategori',
     ];
 
