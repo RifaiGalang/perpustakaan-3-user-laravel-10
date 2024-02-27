@@ -62,7 +62,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                              <div class="modal-dialog ">
                                                  <div class="modal-content">
                                                      <div class="modal-header">
-                                                         <h5 class="modal-title">Create Data Buku</h5>
+                                                         <h5 class="modal-title">Create Data User</h5>
                                                          <button type="button" class="close"
                                                              data-dismiss="modal"><span>&times;</span></button>
                                                      </div>

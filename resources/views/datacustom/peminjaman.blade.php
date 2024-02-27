@@ -184,7 +184,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="modal-dialog ">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Create Kategori Buku</h5>
+                                    <h5 class="modal-title">Berikan Ulasan</h5>
                                     <button type="button" class="close"
                                         data-dismiss="modal"><span>&times;</span></button>
                                 </div>
@@ -193,7 +193,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     @csrf
                                     <div class="modal-body">
                                         <div class="form-group">
-                                            <label>Berikan Ulasan</label>
+                                            <label>Ulasan</label>
                                             <textarea type="text" class="form-control" name="ulasan"
                                                 placeholder="Berikan Ulasan ..." required></textarea>
                                         </div>

@@ -56,6 +56,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 Tambah Data
                                             </button>
                                         </div>
+                                        
                                         {{-- form modal create --}}
                                         <div class="modal fade" id="modalCreate" tabindex="-1" role="dialog"
                                             aria-hidden="true">
